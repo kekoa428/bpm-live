@@ -9,5 +9,6 @@ class MessageBroadcastJob < ApplicationJob
 
   def render_message(message)
     ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message })
+    # ActionCable.server.broadcast "room_channel", message: data['message']
   end
 end
