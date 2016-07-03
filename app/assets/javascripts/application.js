@@ -16,13 +16,7 @@
 //= require_tree .
 //= require 'colorFunctions'
 //= require 'musicFunctions'
-
-//= require jquery2
-//= require jquery_ujs
 //= require jquery-ui/effect-shake
-
-//= require 'colorFunctions'
-//= require 'musicFunctions'
 
 $(document).ready(function() {
 
@@ -33,12 +27,10 @@ $(document).ready(function() {
     setTimeout(function(){
       $(element_id).css('background-color', 'black');
     }, 3000);
-    // $(element_id).css('background-color', 'black');
   })
 
   // Change box color when key is pressed
   $('body').keydown(function(event) {
-    console.log(event.pageX);
     var key_code = event.keyCode;
     var color = randomColor();
     playKeypress(key_code, color);
@@ -48,25 +40,19 @@ $(document).ready(function() {
       recordBeat(key_code, last_press_timestamp, this_press_timestamp, color);
       last_press_timestamp = this_press_timestamp;
     }
-  });
+  })
+
   $('#play-track').click(function(event) {
     event.preventDefault();
+    console.log(tracks);
     playTracks(tracks);
   })
 
-  // Plays track(s), Records track
-  $('#loop-track').click(function(event) {
+  $('#stop-track').click(function(event) {
     event.preventDefault();
-    // looping = !looping;
-    // if (looping) {
-    //   repeat the loop
-    // }
-    // else (!looping) {
-
-    // }
-    playAndRecord(tracks);
-    console.log(tracks);
+    // interval = 0;
   })
+
 
   // Records a track on click
   $('#record').click(function(event) {
@@ -86,6 +72,7 @@ $(document).ready(function() {
     e.preventDefault();
 
     // send track back to DB (an array of layer objects).tracks is the recording
+
     $.ajax({
       url: '/tracks',
       data: {'track': tracks},
@@ -111,15 +98,25 @@ $(document).ready(function() {
     // playTracks( track.contents );
   })
 
+  // Loops tracks
+  $('#loop-track').click(function(event) {
+    event.preventDefault();
+    var self = $(this);
+    self.unbind();
+
+    playTracks(tracks);
+    var myVar = setInterval(function() {
+      playTracks(tracks);
+    }, interval)
+
+    $('#loop-track').bind('click', function(event){
+      event.preventDefault();
+      loopOff(myVar);
+      $(this).unbind();
+    })
+  });
 
 });
-
-
-
-
-
-
-
 
 // colorLoop();
 //   //openOverlay();

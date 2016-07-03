@@ -1,0 +1,10 @@
+<p>Tracks</p>
+<%= @track.title %>
+<%= @track %>
+<%= render "../tracks/track" %>
+
+<div id='user_tracks'>
+  <% @tracks.each do |track| %>
+    <p><%= track.name %></p>
+  <% end %>
+</div>
