@@ -1,8 +1,7 @@
 class TracksController < ApplicationController
 
-
   def index
-
+    @tracks = Track.all
   end
 
   def new
@@ -17,8 +16,9 @@ class TracksController < ApplicationController
     # DONE - associate track with user
 
 
-    @track = Track.new(track_params) # (params[:track])
+    # loop through track and create new layer object for each item in array, with track_id - associate
 
+    @track = Track.new(track_params) # (params[:track])
     respond_to do |format|
       if @track.save
         format.html  { redirect_to(root_path,

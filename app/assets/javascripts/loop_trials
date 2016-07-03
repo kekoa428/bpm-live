@@ -1,0 +1,92 @@
+$('#loop-track').click(function(event) {
+    event.preventDefault();
+    var self = $(this);
+    looping = !looping;
+    playTracks(tracks);
+    loopOnOff(looping);
+    looping = !looping;
+  })
+  //   event.preventDefault();
+  //   $(this).unbind();
+  //   playTracks(tracks);
+  //   var myVar = loopOn();
+
+  //   $('#loop-track').click(function(event){
+  //     event.preventDefault();
+  //     loopOff(myVar);
+  //     console.log(interval);
+  //   })
+
+  //   console.log('made it here');
+  // });
+
+    // console.log(looping);
+    // playTracks(tracks);
+    //   for (var j = 0; j < tracks.length; j++) {
+    //     $('#loop-track').click(function(event) {
+    //     loopSwitch();
+    //     console.log(looping);
+    //     console.log(looping, 'for loop');
+
+    //   })
+
+    // }
+    console.log(tracks);
+    // } else if (looping === false) {
+    //   break
+    //   console.log('broke it')
+    // }})
+
+
+
+
+    // do {
+    //   for (var j = 0; j < tracks.length; j++) {
+    //     setTimeout(playLayer(tracks[j]), 10000);
+    //   }
+    //   i++;
+    // } while (i < 10);
+    // loopOn();
+    // do {
+    //   $('#loop-track').click(function(event) {
+    //     loopOff();
+    //   })
+    // } while (looping);
+
+
+    // whileLoop(looping);
+    // console.log(looping);
+    // $('#loop-track').click(function(event) {
+    //   loopOff();
+    //   // whileLoop(looping)
+    //   console.log(looping);
+    // })
+    // console.log(looping);
+
+
+    // looping = !looping;
+    // if (looping) {
+    //   repeat the loop
+    // }
+    // else (!looping) {
+
+    // }
+    // loopTracks(tracks);
+
+
+function loopOnOff(bool) {
+  if (bool) {
+    var myVar = setInterval(function() {
+      playTracks(tracks);
+    }, interval)
+  } else if (!bool) {
+    loopOff(myVar);
+  }
+}
+
+function loopOff(interval) {
+  clearInterval(interval);
+}
+============================================================
+music functions
+

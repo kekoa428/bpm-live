@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BpmLive</title>
+    <title>BPM Live</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
@@ -11,7 +11,7 @@
 
   <body>
     <nav>
-      <a href="/">BeatsPerMash</a>
+      <a href="/">BPM Live</a>
 
       <% if user_signed_in? %>
         <p>Logged in as <%= current_user.email %></p>
@@ -28,6 +28,7 @@
       <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-right' %>
       <%= link_to 'Record', root_path, id: 'record', :class => 'nav-right' %>
       <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-right' %>
+      <%= link_to 'Stop', root_path, id: 'stop-track', :class => 'nav-right' %>
       <%= link_to 'Play', root_path, remote: true, id: 'play-track', :class => 'nav-right' %>
 
     </nav>

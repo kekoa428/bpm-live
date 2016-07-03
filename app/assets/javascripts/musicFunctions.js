@@ -5,25 +5,18 @@ var sound_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophie
 
 var recording = false;
 var looping = false;
+var stop = false;
 var this_press_timestamp = null;
 var last_press_timestamp = null;
 
 var timer;
+var interval = 0;
 
 function playSound(sound_file) {
   var audio = document.createElement("audio");
   audio.src = "/sounds/" + sound_file;
   audio.addEventListener("ended", function () {}, false);
   audio.play();
-}
-
-function recordBeat(key_code, last_press_timestamp, this_press_timestamp, color) {
-  var beat = {
-    rest: (this_press_timestamp - last_press_timestamp),
-    keypress: key_code,
-    color: color
-  };
-  layer.push(beat);
 }
 
 function playKeypress(key_code, color) {
@@ -50,17 +43,35 @@ function playTracks(tracks) {
   }
 }
 
-function undo() {
-  tracks.pop();
-}
-
-// function stop() {
-//   if (timer > 0) {
-//     console.log(timer);
-//     // timer = 0;
-//     clearTimeout(timer);
+// function playTracks(tracks) {
+//   stop = false;
+//   for (var i = 0; i < tracks.length; i++) {
+//     if (stop === false) {
+//       playLayer(tracks[i]);
+//     } else if (stop === true) {
+//       break;
+//     }
 //   }
 // }
+
+
+function loopOff(interval) {
+  clearInterval(interval);
+}
+
+function stopPlay() {
+  stop = true;
+}
+
+function recordBeat(key_code, last_press_timestamp, this_press_timestamp, color) {
+  var beat = {
+    rest: (this_press_timestamp - last_press_timestamp),
+    keypress: key_code,
+    color: color
+  };
+  layer.push(beat);
+  interval += beat.rest
+}
 
 function record() {
   recording = !recording;
@@ -83,3 +94,15 @@ function playAndRecord(tracks) {
   playTracks(tracks);
   record();
 }
+
+function undo() {
+  tracks.pop();
+}
+
+// function stop() {
+//   if (timer > 0) {
+//     console.log(timer);
+//     // timer = 0;
+//     clearTimeout(timer);
+//   }
+// }
