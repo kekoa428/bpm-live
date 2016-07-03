@@ -22,32 +22,15 @@ class TracksController < ApplicationController
     respond_to do |format|
       if @track.save
         format.html  { redirect_to(root_path,
-                      :notice => 'Post was successfully created.') }
+                      :notice => 'Track successfully added.') }
         format.json  { render :json => @track,
                       :status => :created, :location => @track }
-
         # associate track with user
         @track.users << current_user
 
-        # loop through track and create new layer object for each item in array, with track_id - associate
-        layers_hash = params[:track].values
-        layer_arr = []
-        layers_hash.each do |layer, bet|
-          puts layer
-          # gameplan:
-
-          # loop through each layer and map values to an array ..
-
-          # create layer objects
-
-          # assocatiate layers to track
         end
 
-
-
         # params[:track].values creates array of layers
-
-
 
       else
         format.html  { render :action => "new" }
@@ -59,6 +42,14 @@ class TracksController < ApplicationController
   end
 
   def destroy
+
+  end
+
+  def edit
+
+  end
+
+  def update
 
   end
 
