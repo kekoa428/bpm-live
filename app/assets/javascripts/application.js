@@ -17,12 +17,14 @@
 //= require 'colorFunctions'
 //= require 'musicFunctions'
 //= require jquery-ui/effect-shake
+var div = ["7","8","9","4","5","6","1","2","3"];
+var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#28b463","#239b56","#1d8348"];
 
 $(document).ready(function() {
-  var div = ["7","8","9","4","5","6","1","2","3"];
+
   $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
-    $(this).delay(i*400).fadeIn(200);
-    showColor(div[i], randomColor());
+    $(this).delay(i*200).fadeIn(200);
+    showColor(div[i], loadColors[i]);
     // setTimeout($("#key-"+div[i]).css('background-color', 'black'), 1000);
   });
 
