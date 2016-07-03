@@ -1,3 +1,22 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file. JavaScript code in this file should be added after the last require_* statement.
+//
+// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery2
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree .
+//= require 'colorFunctions'
+//= require 'musicFunctions'
+
 //= require jquery2
 //= require jquery_ujs
 //= require jquery-ui/effect-shake
@@ -14,10 +33,12 @@ $(document).ready(function() {
     setTimeout(function(){
       $(element_id).css('background-color', 'black');
     }, 3000);
+    // $(element_id).css('background-color', 'black');
   })
 
   // Change box color when key is pressed
   $('body').keydown(function(event) {
+    console.log(event.pageX);
     var key_code = event.keyCode;
     var color = randomColor();
     playKeypress(key_code, color);
@@ -27,19 +48,25 @@ $(document).ready(function() {
       recordBeat(key_code, last_press_timestamp, this_press_timestamp, color);
       last_press_timestamp = this_press_timestamp;
     }
-  })
-
+  });
   $('#play-track').click(function(event) {
     event.preventDefault();
-    console.log(tracks);
     playTracks(tracks);
   })
 
-  $('#stop-track').click(function(event) {
+  // Plays track(s), Records track
+  $('#loop-track').click(function(event) {
     event.preventDefault();
-    // interval = 0;
-  })
+    // looping = !looping;
+    // if (looping) {
+    //   repeat the loop
+    // }
+    // else (!looping) {
 
+    // }
+    playAndRecord(tracks);
+    console.log(tracks);
+  })
 
   // Records a track on click
   $('#record').click(function(event) {
@@ -59,7 +86,6 @@ $(document).ready(function() {
     e.preventDefault();
 
     // send track back to DB (an array of layer objects).tracks is the recording
-
     $.ajax({
       url: '/tracks',
       data: {'track': tracks},
@@ -85,25 +111,15 @@ $(document).ready(function() {
     // playTracks( track.contents );
   })
 
-  // Loops tracks
-  $('#loop-track').click(function(event) {
-    event.preventDefault();
-    var self = $(this);
-    self.unbind();
-
-    playTracks(tracks);
-    var myVar = setInterval(function() {
-      playTracks(tracks);
-    }, interval)
-
-    $('#loop-track').bind('click', function(event){
-      event.preventDefault();
-      loopOff(myVar);
-      $(this).unbind();
-    })
-  });
 
 });
+
+
+
+
+
+
+
 
 // colorLoop();
 //   //openOverlay();
