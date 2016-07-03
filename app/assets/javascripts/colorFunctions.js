@@ -74,9 +74,17 @@ function showColor(id, color) {
   $('#key-' + id.toString()).effect('shake', { direction: "left", distance: 5, times: 5 } ).css('background-color', color);
 }
 
+// var colors = [
+//   "#1abc9c", "#f39c12", "#16a085", "#f1c40f",
+//   "#2ecc71", "#27ae60", "#e67e22", "#d35400",
+//   "#3498db", "#2980b9", "#e74c3c", "#c0392b",
+//   "#9b59b6", "#8e44ad", "#ecf0f1", "#bdc3c7"
+// ];
+
 // Random color generator
 function randomColor() {
   return ('#' + Math.floor(Math.random()*16777215).toString(16));
+  // return colors[Math.floor(Math.random() * colors.length)];
 }
 
 // Color change functions

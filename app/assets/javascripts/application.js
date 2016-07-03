@@ -6,6 +6,21 @@
 //= require 'musicFunctions'
 
 $(document).ready(function() {
+  var div = ["7","8","9","4","5","6","1","2","3"];
+  $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
+    $(this).delay(i*400).fadeIn(200);
+    showColor(div[i], randomColor());
+    // setTimeout($("#key-"+div[i]).css('background-color', 'black'), 1000);
+  });
+
+  // $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
+  //   $(this).css('background-color', 'black').delay(i*400)
+  //   // setTimeout($("#key-"+div[i]).css('background-color', 'black'), 1000);
+  // });
+
+  // $("7, 8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
+  //   $("#key-"+this).delay(i*400).fadeIn(200);
+  // });
 
   // Return square to black when key is depressed
   $('body').keyup(function(event) {
