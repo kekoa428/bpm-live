@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>BpmLive</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,55 @@
   </head>
 
   <body>
+    <nav>
+      <a href="/">BeatsPerMash</a>
+
+      <% if user_signed_in? %>
+        <p>Logged in as <%= current_user.email %></p>
+        <p> <%= link_to 'View my tracks', user_path( current_user.id ) %></p>
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-right' %> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-right'  %>
+
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, :class => 'nav-right'  %> |
+        <%= link_to "Login", new_user_session_path, :class => 'nav-right'  %>
+      <% end %>
+
+      <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-right' %>
+      <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-right' %>
+      <%= link_to 'Record', root_path, id: 'record', :class => 'nav-right' %>
+      <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-right' %>
+      <%= link_to 'Play', root_path, remote: true, id: 'play-track', :class => 'nav-right' %>
+
+    </nav>
+
+
+    <!-- The overlay -->
+    <div id="main-overlay" class="overlay">
+
+      <!-- Button to close the overlay navigation -->
+      <a href="#" id="main-overlay-close-btn" class="closebtn" >&times;</a>
+
+      <!-- Overlay content -->
+      <div class="overlay-content">
+        <p>You can record multiple tracks!</p>
+        <p>There is not a great UI for it, but that can be added.</p>
+
+        <p>Have fun with it.</p>
+
+        <p>-- Code Fairy</p>
+      </div>
+
+    </div>
+
+    <!-- login -->
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
