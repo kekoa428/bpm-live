@@ -23,9 +23,10 @@ function playSound(sound_file) {
   if (stop === false) {
     audio.play();
   }
+  // FIXME: Should be a better way to pause this
   else if (stop === true) {
     audio.pause();
-    audio.currentTime = 0;
+    // audio.currentTime = 0;
     throw "";
   }
 }

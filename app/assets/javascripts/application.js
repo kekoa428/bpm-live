@@ -82,21 +82,15 @@ $(document).ready(function() {
   // play track from user profile
   $(".play-track-from-user-profile").click(function(e) {
     e.preventDefault();
-    var play_button_clicked = $(this)
-    var id_of_track_to_play = play_button_clicked.attr('id')
+    var play_button_clicked = $(this);
+    var id_of_track_to_play = play_button_clicked.attr('id');
     console.log(id_of_track_to_play);
-
-
-    console.log(play_button_clicked.attr('id'));
-
-
     $.ajax({
       url: "/tracks/" + id_of_track_to_play
     })
 
-    .done(function(layer){
-      console.log("=====================");
-      console.log(layer);
+    .done(function(response){
+      console.log(response);
     })
 
     // find contents of track to play, the array
@@ -106,23 +100,23 @@ $(document).ready(function() {
     // LASTLY:
     // playTracks( track.contents );
   })
-
   // Loops tracks
   $('#loop-track').click(function(event) {
     event.preventDefault();
-    var self = $(this);
-    self.unbind();
+    var oldInterval = interval;
 
-    playTracks(tracks);
-    var myVar = setInterval(function() {
+    if (looping) {
+      looping = false;
+      clearInterval(trackLoop);
+    }
+    else {
+      interval = oldInterval;
+      looping = true;
       playTracks(tracks);
-    }, interval)
-
-    $('#loop-track').bind('click', function(event){
-      event.preventDefault();
-      loopOff(myVar);
-      $(this).unbind();
-    })
+      trackLoop = setInterval(function() {
+        playTracks(tracks);
+      }, interval)
+    }
   });
 
 });
