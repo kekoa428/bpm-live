@@ -93,10 +93,9 @@ $(document).ready(function() {
   // play track from user profile
   $(".play-track-from-user-profile").click(function(e) {
     e.preventDefault();
-    var play_button_clicked = $(this)
-    var id_of_track_to_play = play_button_clicked.attr('id')
+    var play_button_clicked = $(this);
+    var id_of_track_to_play = play_button_clicked.attr('id');
     console.log(id_of_track_to_play);
-
 
     $.ajax({
       url: "/tracks/" + id_of_track_to_play
@@ -104,7 +103,6 @@ $(document).ready(function() {
 
     .done(function(response){
       console.log(response);
-      // playTracks(response);
     })
 
     // find contents of track to play, the array

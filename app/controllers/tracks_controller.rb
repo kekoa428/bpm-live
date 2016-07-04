@@ -21,6 +21,7 @@ class TracksController < ApplicationController
     @track = Track.new(name: params[:name])
     respond_to do |format|
       if @track.save
+        puts "#{@track.id}*******************"
         format.html  { redirect_to(root_path,
                       :notice => 'Post was successfully created.') }
         format.json  { render :json => @track,
@@ -28,6 +29,7 @@ class TracksController < ApplicationController
 
         # associate track with user
         @track.users << current_user
+        puts "#{@track}***********************************************"
 
         # loop through track and create new layer object for each item in array, with track_id - associate
         track = params[:track].values
@@ -88,14 +90,19 @@ class TracksController < ApplicationController
     end
     p @beat_array
 
-    # tray.layers --> should produce layers array we need
-
-    # since it's not:
-    puts "From DOM to track#{show}, since need track ID to know which to play"
-    puts "TRACKID: #{params[:id]}"
-    puts "++++++++++++++++++++++++++++++++++++++++++++++++"
-    # p JSON.parse(@beat_array.replace(/&quot;/g,'"'))
     render '/tracks/_track', layout: false
+    # puts "++++++ hello from DOM click 'play'"
+    # puts "TRACKID: #{params[:id]}"
+    # track = Track.find(params[:id])
+
+    # @layer_response_array = track.layers
+    # puts "#{layer_response_array}***********"
+
+    # respond_to do |format|
+    #   format.html {redirect_to(root_path, :notice => "RENDERED HTML")}
+    #   format.json {redirect_to(root_path, :notice => "JSON RENDERED")}
+    #   format.js {redirect_to(root_path, :notice => "JS RENDERED")}
+    # end
   end
 
   def destroy
