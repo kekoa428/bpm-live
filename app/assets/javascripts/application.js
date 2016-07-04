@@ -83,9 +83,6 @@ $(document).ready(function() {
 
     // ask for name here?
     var name = prompt("Your track is lonely! Give it a name.")
-
-    console.log(name)
-
     $.ajax({
       url: '/tracks',
       data: {'track': tracks, 'name': name},
@@ -95,16 +92,16 @@ $(document).ready(function() {
 
   // play track from user profile
   $(".play-track-from-user-profile").click(function(e) {
-    console.log("Play clicked from user profile, prevent default")
     e.preventDefault();
     var play_button_clicked = $(this)
-    console.log(play_button_clicked);
-
     var id_of_track_to_play = play_button_clicked.attr('id')
-    console.log(play_button_clicked.attr('id'));
 
-
-
+    $.ajax({
+      url: '/tracks/' + id_of_track_to_play
+    })
+    .done(function(response){
+      console.log(response);
+    })
 
     // find contents of track to play, the array
     // var contents_of_track_to_play =
