@@ -32,7 +32,7 @@ function playSound(sound_file) {
 
 function playKeypress(key_code, color) {
   if (key_code < 49 || key_code > 58) { return; }
-  var sound_file = sound_files[key_code - 49];
+  var sound_file = mp3_files[key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
   createTimeout(boxChangeBack, key_code - 48, 1000000);

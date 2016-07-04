@@ -78,7 +78,7 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find(params[:id])
-    render :'track'
+    puts "TRACK ATTRS: #{@track.attributes}****************************"
   end
 
   def destroy
