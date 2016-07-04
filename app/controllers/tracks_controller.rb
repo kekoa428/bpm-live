@@ -18,7 +18,7 @@ class TracksController < ApplicationController
 
     # loop through track and create new layer object for each item in array, with track_id - associate
 
-    @track = Track.new(track_params) # (params[:track])
+    @track = Track.new(name: params[:name])
     respond_to do |format|
       if @track.save
         format.html  { redirect_to(root_path,
@@ -28,7 +28,6 @@ class TracksController < ApplicationController
 
         # associate track with user
         @track.users << current_user
-        puts "#{@track}***********************************************"
 
         # loop through track and create new layer object for each item in array, with track_id - associate
         track = params[:track].values
@@ -77,10 +76,16 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.find(params[:id])
+    puts "From DOM to track#{show}, since need track ID to know which to play"
+    puts "TRACKID: #{params[:id]}"
+    track = Track.find(params[:id])
+
+    # tray.layers --> should produce layers array we need
+
+    # since it's not:
     @beat_array = []
     i = 0
-    @track.layers.each do |layer|
+    track.layers.each do |layer|
       @beat_array << layer[i.to_s]
       i += 1
       layer.beats.each do |beat|

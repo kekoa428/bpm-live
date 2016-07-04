@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20160703053610) do
 
   create_table "layers", force: :cascade do |t|
     t.integer  "track_id",   null: false
-    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,7 +38,6 @@ ActiveRecord::Schema.define(version: 20160703053610) do
 
   create_table "tracks", force: :cascade do |t|
     t.string   "name"
-    t.string   "layers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
