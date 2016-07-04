@@ -78,16 +78,21 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find(params[:id])
+    p @track
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
     @beat_array = []
     i = 0
     @track.layers.each do |layer|
       @beat_array << i.to_s
       i += 1
       layer.beats.each do |beat|
-        @beat_array << beat.to_json
+        @beat_array << beat.attributes
       end
     end
     p @beat_array
+    puts "++++++++++++++++++++++++++++++++++++++++++++++++"
+    # p JSON.parse(@beat_array.replace(/&quot;/g,'"'))
+    render '/tracks/_track', layout: false
   end
 
   def destroy

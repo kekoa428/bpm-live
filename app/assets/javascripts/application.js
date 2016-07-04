@@ -102,6 +102,9 @@ $(document).ready(function() {
 
     .done(function(response){
       console.log(response);
+      JSON.parse(response);
+      console.log(response);
+      // playTracks(response);
     })
 
     // find contents of track to play, the array
