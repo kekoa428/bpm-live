@@ -81,10 +81,10 @@ class TracksController < ApplicationController
     @beat_array = []
     i = 0
     @track.layers.each do |layer|
-      @beat_array << layer[i.to_s]
+      @beat_array << i.to_s
       i += 1
       layer.beats.each do |beat|
-        @beat_array << beat
+        @beat_array << beat.to_json
       end
     end
     p @beat_array
