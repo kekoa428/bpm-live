@@ -3,7 +3,7 @@ class CreateLayers < ActiveRecord::Migration[5.0]
     create_table :layers do |t|
       t.integer :track_id, null: false
 
-      t.timestamps
+      t.timestamps(null: false)
     end
   end
 end

@@ -58,9 +58,9 @@ $(document).ready(function() {
 
   $('#stop-track').click(function(event) {
     event.preventDefault();
-    // interval = 0;
+    stopSwitch();
+    console.log(stop);
   })
-
 
   // Records a track on click
   $('#record').click(function(event) {
