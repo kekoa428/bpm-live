@@ -90,9 +90,14 @@ $(document).ready(function() {
 
     // send track back to DB (an array of layer objects).tracks is the recording
 
+    // ask for name here?
+    var name = prompt("Your track is lonely! Give it a name.")
+
+    console.log(name)
+
     $.ajax({
       url: '/tracks',
-      data: {'track': tracks},
+      data: {'track': tracks, 'name': name},
       method: 'post'
     })
   })
@@ -107,9 +112,11 @@ $(document).ready(function() {
     var id_of_track_to_play = play_button_clicked.attr('id')
     console.log(play_button_clicked.attr('id'));
 
+
+
+
     // find contents of track to play, the array
     // var contents_of_track_to_play =
-
 
     // LASTLY:
     // playTracks( track.contents );
