@@ -1,6 +1,6 @@
 class CreateRooms < ActiveRecord::Migration[5.0]
   def change
-    create_table :rooms
+    create_table :rooms do |t|
       t.string   :path
     end
   end
