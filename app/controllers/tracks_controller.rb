@@ -82,14 +82,15 @@ class TracksController < ApplicationController
     @beat_array = []
     i = 0
     @track.layers.each do |layer|
-      @beat_array << layer[i.to_s]
+      @beat_array << i.to_s
       i += 1
       layer.beats.each do |beat|
-        @beat_array << beat
+        @beat_array << beat.attributes
       end
     end
     p @beat_array
 
+    render '/tracks/_track', layout: false
     # puts "++++++ hello from DOM click 'play'"
     # puts "TRACKID: #{params[:id]}"
     # track = Track.find(params[:id])
