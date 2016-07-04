@@ -97,8 +97,9 @@ $(document).ready(function() {
     var id_of_track_to_play = play_button_clicked.attr('id')
 
     $.ajax({
-      url: '/tracks/' + id_of_track_to_play
+      url: "/tracks/" + id_of_track_to_play
     })
+
     .done(function(response){
       console.log(response);
     })

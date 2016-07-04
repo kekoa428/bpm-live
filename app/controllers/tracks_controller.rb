@@ -78,7 +78,16 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find(params[:id])
-    puts "TRACK ATTRS: #{@track.attributes}****************************"
+    @beat_array = []
+    i = 0
+    @track.layers.each do |layer|
+      @beat_array << layer[i.to_s]
+      i += 1
+      layer.beats.each do |beat|
+        @beat_array << beat
+      end
+    end
+    p @beat_array
   end
 
   def destroy
