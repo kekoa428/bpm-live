@@ -84,6 +84,8 @@ $(document).ready(function() {
     e.preventDefault();
     var play_button_clicked = $(this)
     var id_of_track_to_play = play_button_clicked.attr('id')
+    console.log(id_of_track_to_play);
+
 
     console.log(play_button_clicked.attr('id'));
 
@@ -92,8 +94,9 @@ $(document).ready(function() {
       url: "/tracks/" + id_of_track_to_play
     })
 
-    .done(function(response){
-      console.log(response);
+    .done(function(layer){
+      console.log("=====================");
+      console.log(layer);
     })
 
     // find contents of track to play, the array
