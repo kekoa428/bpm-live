@@ -15,10 +15,10 @@ class TracksController < ApplicationController
 
     # DONE - associate track with user
 
-
     # loop through track and create new layer object for each item in array, with track_id - associate
 
-    @track = Track.new(track_params) # (params[:track])
+    @track = Track.new(name: params[:name])
+
     respond_to do |format|
       if @track.save
         format.html  { redirect_to(root_path,
@@ -27,8 +27,6 @@ class TracksController < ApplicationController
                       :status => :created, :location => @track }
         # associate track with user
         @track.users << current_user
-
-        end
 
         # params[:track].values creates array of layers
 
@@ -51,10 +49,5 @@ class TracksController < ApplicationController
 
   def update
 
-  end
-
-  private
-  def track_params
-    params.require(:track).permit(:name)
   end
 end

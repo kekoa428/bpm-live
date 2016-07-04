@@ -60,6 +60,20 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
+    <!-- when clicks save track, pop to name the track -->
+    <div id="add_track_name_popup" style="display: none">
+      <!-- if didn't just click save, there would be no @track -->
+      <% if @track %>
+        <h3>Your track is lonely! Give it a name.</h3>
+          <%= form_for @track do |f| %>
+            <%= f.label :name %>:
+            <%= f.text_field :name %><br />
+
+            <%= f.submit %>
+          <% end %>
+      <% end %>
+    </div>
+
     <%= yield %>
   </body>
 </html>
