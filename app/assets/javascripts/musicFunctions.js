@@ -1,7 +1,11 @@
 var tracks = [];
 var layer = [];
-var sound_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.wav",
+// .wav files
+var wav_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.wav",
   "vox1.wav", "vox2.wav", "vox3.wav", "vox4.wav"];
+// .mp3 files
+var mp3_files = ["kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
+  "vox1.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"];
 
 var recording = false;
 var looping = false;
@@ -21,7 +25,7 @@ function playSound(sound_file) {
 
 function playKeypress(key_code, color) {
   if (key_code < 49 || key_code > 58) { return; }
-  var sound_file = sound_files[key_code - 49];
+  var sound_file = mp3_files[key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
   createTimeout(boxChangeBack, key_code - 48, 100);
