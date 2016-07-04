@@ -76,23 +76,26 @@ class TracksController < ApplicationController
   end
 
   def show
-    puts "From DOM to track#{show}, since need track ID to know which to play"
-    puts "TRACKID: #{params[:id]}"
-    track = Track.find(params[:id])
+    @track = Track.find(params[:id])
+    @beat_array = []
+    i = 0
+    @track.layers.each do |layer|
+      @beat_array << i.to_s
+      i += 1
+      layer.beats.each do |beat|
+        @beat_array << beat.attributes
+      end
+    end
+    p @beat_array
 
     # tray.layers --> should produce layers array we need
 
     # since it's not:
-    @beat_array = []
-    i = 0
-    track.layers.each do |layer|
-      @beat_array << layer[i.to_s]
-      i += 1
-      layer.beats.each do |beat|
-        @beat_array << beat
-      end
-    end
-    p @beat_array
+    puts "From DOM to track#{show}, since need track ID to know which to play"
+    puts "TRACKID: #{params[:id]}"
+    puts "++++++++++++++++++++++++++++++++++++++++++++++++"
+    # p JSON.parse(@beat_array.replace(/&quot;/g,'"'))
+    render '/tracks/_track', layout: false
   end
 
   def destroy

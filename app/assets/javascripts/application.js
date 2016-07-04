@@ -102,9 +102,9 @@ $(document).ready(function() {
       url: "/tracks/" + id_of_track_to_play
     })
 
-    .done(function(layer){
-      console.log("=====================");
-      console.log(layer);
+    .done(function(response){
+      console.log(response);
+      // playTracks(response);
     })
 
     // find contents of track to play, the array
@@ -113,23 +113,23 @@ $(document).ready(function() {
     // LASTLY:
     // playTracks( track.contents );
   })
-
   // Loops tracks
   $('#loop-track').click(function(event) {
     event.preventDefault();
-    var self = $(this);
-    self.unbind();
+    var oldInterval = interval;
 
-    playTracks(tracks);
-    var myVar = setInterval(function() {
+    if (looping) {
+      looping = false;
+      clearInterval(trackLoop);
+    }
+    else {
+      interval = oldInterval;
+      looping = true;
       playTracks(tracks);
-    }, interval)
-
-    $('#loop-track').bind('click', function(event){
-      event.preventDefault();
-      loopOff(myVar);
-      $(this).unbind();
-    })
+      trackLoop = setInterval(function() {
+        playTracks(tracks);
+      }, interval)
+    }
   });
 
 });
