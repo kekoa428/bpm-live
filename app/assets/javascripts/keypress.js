@@ -1,4 +1,4 @@
-$(".rooms.show").ready(function() {
+$(document).ready(function() {
 // Return square to black when key is depressed
   $('body').keyup(function(event) {
     var element_id = '#key-' + (event.keyCode - 48).toString();
