@@ -19,6 +19,7 @@ function playSound(sound_file) {
   audio.play();
 }
 
+
 function playKeypress(key_code, color) {
   if (key_code < 49 || key_code > 58) { return; }
   var sound_file = sound_files[key_code - 49];
