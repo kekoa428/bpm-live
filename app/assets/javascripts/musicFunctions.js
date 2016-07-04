@@ -7,34 +7,42 @@ var wav_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.
 var mp3_files = ["kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
   "vox1.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"];
 
+
 var recording = false;
 var looping = false;
 var stop = false;
 var this_press_timestamp = null;
 var last_press_timestamp = null;
 
-var timer;
 var interval = 0;
 
 function playSound(sound_file) {
   var audio = document.createElement("audio");
   audio.src = "/sounds/" + sound_file;
   audio.addEventListener("ended", function () {}, false);
-  audio.play();
+  if (stop === false) {
+    audio.play();
+  }
+  else if (stop === true) {
+    audio.pause();
+    audio.currentTime = 0;
+    throw "";
+  }
 }
 
 function playKeypress(key_code, color) {
   if (key_code < 49 || key_code > 58) { return; }
-  var sound_file = mp3_files[key_code - 49];
+  var sound_file = sound_files[key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
-  createTimeout(boxChangeBack, key_code - 48, 100);
+  createTimeout(boxChangeBack, key_code - 48, 1000000);
 }
 
 function playLayer(layer) {
   var rest = 0;
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
+    console.log(beat);
     rest += beat.rest;
     createTimeout(playKeypress
       , beat.keypress, beat.color, rest);
@@ -45,26 +53,6 @@ function playTracks(tracks) {
   for (var i = 0; i < tracks.length; i++) {
     playLayer(tracks[i]);
   }
-}
-
-// function playTracks(tracks) {
-//   stop = false;
-//   for (var i = 0; i < tracks.length; i++) {
-//     if (stop === false) {
-//       playLayer(tracks[i]);
-//     } else if (stop === true) {
-//       break;
-//     }
-//   }
-// }
-
-
-function loopOff(interval) {
-  clearInterval(interval);
-}
-
-function stopPlay() {
-  stop = true;
 }
 
 function recordBeat(key_code, last_press_timestamp, this_press_timestamp, color) {
@@ -103,10 +91,10 @@ function undo() {
   tracks.pop();
 }
 
-// function stop() {
-//   if (timer > 0) {
-//     console.log(timer);
-//     // timer = 0;
-//     clearTimeout(timer);
-//   }
-// }
+function loopOff(interval) {
+  clearInterval(interval);
+}
+
+function stopSwitch() {
+  stop = !stop;
+}
