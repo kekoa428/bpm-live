@@ -19,6 +19,7 @@
 //= require 'musicFunctions'
 //= require 'keypress.js'
 //= require jquery-ui/effect-shake
+//= require 'js.cookie'
 
 var div = ["7","8","9","4","5","6","1","2","3"];
 var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#28b463","#239b56","#1d8348"];
