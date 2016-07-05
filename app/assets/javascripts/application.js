@@ -13,6 +13,7 @@
 //= require jquery2
 //= require jquery_ujs
 //= require_tree .
+//= require 'save'
 //= require 'colorFunctions'
 //= require 'musicFunctions'
 //= require 'keypress.js'
@@ -22,21 +23,30 @@ var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#
 
 $(document).ready(function() {
 
+  // Fade in divs on load of page
   $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
     $(this).delay(i*200).fadeIn(200);
     showColor(div[i], loadColors[i]);
-    // setTimeout($("#key-"+div[i]).css('background-color', 'black'), 1000);
   });
 
-  // $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
-  //   $(this).css('background-color', 'black').delay(i*400)
-  //   // setTimeout($("#key-"+div[i]).css('background-color', 'black'), 1000);
-  // });
+  // bind keypress functions
+  bindKeyUp();
+  bindKeyDown();
 
-  // $("7, 8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
-  //   $("#key-"+this).delay(i*400).fadeIn(200);
-  // });
+  // $('.home-link').on('click', function(e){
+  $(document).on('click', '.home-link', function(e){
+    console.log('EVENT HANDLER - rebinding keys');
+    console.log(this);
+    rebindKeys();
+  });
 
+  $(document).on('focus', 'input', function(e){
+    console.log('EVENT HANDLER - unbind keys');
+    console.log(this);
+    unbindKeys();
+  });
+
+  // This is the end of the binding functinality
 
   $('#play-track').click(function(event) {
     event.preventDefault();
@@ -62,27 +72,9 @@ $(document).ready(function() {
     undo();
   })
 
-  // when guest clicks save
-  $("#save-guest-button").click(function(e) {
-    e.preventDefault();
-    $(".save-popup").css("display", "block");
-  })
-
-  // save
-  $("#save").click(function(e) {
-    console.log("Save clicked, prevent default")
-    e.preventDefault();
-
-    // send track back to DB (an array of layer objects).tracks is the recording
-
-    // ask for name here?
-    var name = prompt("Your track is lonely! Give it a name.")
-    $.ajax({
-      url: '/tracks',
-      data: {'track': tracks},
-      method: 'post'
-    })
-  })
+  // bind save functions from save.js
+  guestSave();
+  saveTrack();
 
   // play track from user profile
   $(".play-track-from-user-profile").click(function(e) {
@@ -123,22 +115,9 @@ $(document).ready(function() {
       }, interval)
     }
   });
-
 });
 
-// colorLoop();
-//   //openOverlay();
-// });
-//$('#main-overlay-close-btn').click(closeOverlay);
-// /* Open when someone clicks on the span element */
-// function openOverlay() {
-//     document.getElementById("main-overlay").style.width = "100%";
-// }
-//
-// /* Close when someone clicks on the "x" symbol inside the :overlay */
-// function closeOverlay() {
-//     document.getElementById("main-overlay").style.width = "0%";
-// }
+// MARKS INITAL CODE HELP !!!
 // function record_rest(start_time, end_time) {
 //   if (start_time && end_time) {
 //     track.push({ rest: (end_time - start_time) });

@@ -11,7 +11,7 @@
 
   <body class="<%= controller_name %> <%= action_name %>">
     <nav>
-      <a href="/">BPM Live</a>
+      <a class="home-link" href="/">BPM Live</a>
 
       <% if user_signed_in? %>
         <p>Logged in as <%= current_user.email %></p>
