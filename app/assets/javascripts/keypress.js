@@ -11,6 +11,9 @@ function bindKeyUp() {
 function bindKeyDown() {
   // this binding will allow for color change and sound play
   $(document).keydown(function(event) {
+    var key_code = event.keyCode;
+    var color = randomColor();
+
     if (recording) {
       this_press_timestamp = new Date().getTime();
       recordBeat(key_code, last_press_timestamp, this_press_timestamp, color);

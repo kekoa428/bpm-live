@@ -51,6 +51,10 @@ $(document).ready(function() {
   });
 
   // This is the end of the binding functinality
+  $('#record').click(function(event) {
+    event.preventDefault();
+    record();
+  })
 
   $('#play-track').click(function(event) {
     event.preventDefault();
@@ -63,11 +67,6 @@ $(document).ready(function() {
     console.log(stop);
   })
 
-  // Records a track on click
-  $('#record').click(function(event) {
-    event.preventDefault();
-    record();
-  })
 
   // Removes last track recorded
   $('#undo').click(function(event) {
