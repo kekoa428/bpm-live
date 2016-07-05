@@ -1,5 +1,8 @@
+# $(document).on
 App.room = App.cable.subscriptions.create {
   channel: "RoomChannel"
+  # Check Websocket Frames to confirm identifier is being called.
+  room_id: $('.grid').data 'room-id'
   },
   connected: ->
     # Called when the subscription is ready for use on the server
@@ -16,8 +19,8 @@ App.room = App.cable.subscriptions.create {
   #   $('#messages').append data['beat']
     # Called when there's incoming data on the websocket for this channel
 
-  speak: (beat) ->
-    @perform 'speak', beat: beat
+  speak: (beat, room_id) ->
+    @perform 'speak', beat: beat, room_id: room_id
 
 $(document).on 'keydown', 'body', (event) ->
   keyCode = event.keyCode
