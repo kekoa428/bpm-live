@@ -9,118 +9,32 @@ class TracksController < ApplicationController
   end
 
   def create
-    # DONE - when click save, prevent default and send tracks object to here.
-
-    # DONE - create new track. send track variable from application.js to controller using Json.
-
-    # DONE - associate track with user
-
-
-    # loop through track and create new layer object for each item in array, with track_id - associate
-
     @track = Track.new(name: params[:name])
+
+    @track.users << current_user
+    track = params[:track].values
+
+    track.each do |layer|
+      new_layer = @track.layers.build
+      layer.values.each {|beat| new_layer.beats.build(beat) }
+    end
+
     respond_to do |format|
       if @track.save
-        puts "#{@track.id}*******************"
-        format.html  { redirect_to(root_path,
-                      :notice => 'Post was successfully created.') }
-        format.json  { render :json => @track,
-                      :status => :created, :location => @track }
-
-        # associate track with user
-        @track.users << current_user
-        puts "#{@track.inspect}***********************************************"
-
-        # loop through track and create new layer object for each item in array, with track_id - associate
-        track = params[:track].values
-        track.each do |layer|
-            # track index
-            ti = 0
-            # layer index
-            li = 0
-          until ti == (track.length) do
-            puts "tracklength: #{track.length}********************************************************"
-            new_layer = Layer.create(track_id: @track.id)
-            if new_layer
-              puts "We are in a new layer"
-              # increase counter by 1 for each layer iteration
-              # counter to change to next beat
-              b = 0
-              # how many beats in this layer
-              length = track[ti].length
-              puts "length: #{length}============================================================================="
-              until b == (length) do
-                puts "WE MAD IT TO B LOOP"
-                puts "li: #{li} **********************************************************************************"
-                puts "b: #{b} **********************************************************************************"
-                x = track[li].values[b][:rest]
-                puts "x: #{x} **********************************************************************************"
-                y = track[li].values[b][:keypress]
-                puts "y: #{y} **********************************************************************************"
-                z = track[li].values[b][:color]
-                puts "z: #{z} **********************************************************************************"
-
-                new_beat = Beat.create(
-                  layer_id: new_layer.id,
-                  rest: x,
-                  keypress: y,
-                  color: z
-                )
-                puts "new_beat: #{new_beat}*********************************************************************************"
-                new_layer.beats << new_beat
-                b += 1
-              end
-              li += 1
-              ti += 1
-            else
-              break
-            end
-            ti += 1
-          end
-        end
+        format.html  { redirect_to(root_path, notice: 'Post was successfully created.') }
+        format.json  { render json: @track, status: :created, location: @track }
       else
-        format.html  { render :action => "new" }
-        format.json  { render :json => @track.errors,
-                      :status => :unprocessable_entity }
+        format.html  { render action: :new }
+        format.json  { render json: @track.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def show
     @track = Track.find(params[:id])
-    @output = []
-    i = 0
-    single_layer = {}
-    @track.layers.each do |layer|
-      key = i.to_s
-      layer.beats.each do |beat|
-        single_layer[key] = {
-          rest: beat.rest,
-          keypress: beat.keypress,
-          color: beat.color
-        }
-        i += 1
-      end
-      @output << single_layer
-      single_layer = {}
-    end
-    @output
 
-    render '/tracks/_track', layout: false, json: @output
-
+    render json: @track.to_json(include: { layers: { include: :beats } })
   end
-    # puts "++++++ hello from DOM click 'play'"
-    # puts "TRACKID: #{params[:id]}"
-    # track = Track.find(params[:id])
-
-    # @layer_response_array = track.layers
-    # puts "#{layer_response_array}***********"
-
-    # respond_to do |format|
-    #   format.html {redirect_to(root_path, :notice => "RENDERED HTML")}
-    #   format.json {redirect_to(root_path, :notice => "JSON RENDERED")}
-    #   format.js {redirect_to(root_path, :notice => "JS RENDERED")}
-    # end
 
   def destroy
 

@@ -78,6 +78,7 @@ $(document).ready(function() {
     })
       .done(function(response){
         console.log(response);
+        response_tracks = response;
       })
   })
 
