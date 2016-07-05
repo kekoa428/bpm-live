@@ -1,6 +1,10 @@
 var tracks = [];
 var layer = [];
 
+var track = {
+  layers = []
+}
+
 // .wav files
 var wav_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.wav",
   "vox1.wav", "vox2.wav", "vox3.wav", "vox4.wav"];
