@@ -116,14 +116,3 @@ $(document).ready(function() {
     }
   });
 });
-
-// MARKS INITAL CODE HELP !!!
-// function record_rest(start_time, end_time) {
-//   if (start_time && end_time) {
-//     track.push({ rest: (end_time - start_time) });
-//   }
-// }
-//
-// function record_keypress(key_code) {
-//   track.push({ keypress: key_code });
-// }
