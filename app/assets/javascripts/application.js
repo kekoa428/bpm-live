@@ -19,6 +19,7 @@
 //= require 'musicFunctions'
 //= require 'keypress.js'
 //= require jquery-ui/effect-shake
+
 var div = ["7","8","9","4","5","6","1","2","3"];
 var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#28b463","#239b56","#1d8348"];
 
@@ -29,7 +30,6 @@ $(document).ready(function() {
     $(this).delay(i*200).fadeIn(200);
     showColor(div[i], loadColors[i]);
   });
-
   // bind keypress functions
   bindKeyUp();
   bindKeyDown();
@@ -76,8 +76,8 @@ $(document).ready(function() {
     undo();
   })
 
-  // bind save functions from save.js
   guestSave();
+
   saveTrack();
 
   // play track from user profile
@@ -86,21 +86,16 @@ $(document).ready(function() {
     var play_button_clicked = $(this);
     var id_of_track_to_play = play_button_clicked.attr('id');
     console.log(id_of_track_to_play);
+
     $.ajax({
       url: "/tracks/" + id_of_track_to_play
     })
-
-    .done(function(response){
-      console.log(response);
-    })
-
-    // find contents of track to play, the array
-    // var contents_of_track_to_play =
-
-
-    // LASTLY:
-    // playTracks( track.contents );
+      .done(function(response){
+        console.log(response);
+        response_tracks = response;
+      })
   })
+
   // Loops tracks
   $('#loop-track').click(function(event) {
     event.preventDefault();

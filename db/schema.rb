@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704231319) do
+ActiveRecord::Schema.define(version: 20160705174345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "beats", force: :cascade do |t|
     t.integer  "layer_id",   null: false
-    t.string   "rest"
-    t.string   "keypress"
+    t.integer  "rest"
+    t.integer  "keypress"
     t.string   "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

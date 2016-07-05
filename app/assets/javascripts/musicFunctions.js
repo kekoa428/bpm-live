@@ -1,5 +1,6 @@
 var tracks = [];
 var layer = [];
+
 // .wav files
 var wav_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.wav",
   "vox1.wav", "vox2.wav", "vox3.wav", "vox4.wav"];
@@ -7,10 +8,10 @@ var wav_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.
 var mp3_files = ["kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
   "vox1.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"];
 
-
 var recording = false;
 var looping = false;
 var stop = false;
+
 var this_press_timestamp = null;
 var last_press_timestamp = null;
 
@@ -30,7 +31,6 @@ function playSound(sound_file) {
     throw "";
   }
 }
-
 
 function playKeypress(key_code, color) {
   if (key_code < 49 || key_code > 58) { return; }
@@ -91,10 +91,6 @@ function playAndRecord(tracks) {
 
 function undo() {
   tracks.pop();
-}
-
-function loopOff(interval) {
-  clearInterval(interval);
 }
 
 function stopSwitch() {
