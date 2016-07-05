@@ -5,6 +5,7 @@ function guestSave() {
     $(".save-popup").css("display", "block");
     console.log("Guest tracks var:");
     console.log(tracks);
+    // Cookies.set("guest_track", tracks, {explires: 1, path: "/"});
   })
 };
 
