@@ -54,7 +54,7 @@ $(document).ready(function() {
 
   $('#play-track').click(function(event) {
     event.preventDefault();
-    playTracks(tracks);
+    playTrack(track);
   })
 
   $('#stop-track').click(function(event) {
@@ -91,7 +91,7 @@ $(document).ready(function() {
     })
       .done(function(response){
         playableTrack = formatTrack(response);
-        playTracks(playableTrack);
+        playTrack(playableTrack);
       })
   })
 
@@ -103,13 +103,15 @@ $(document).ready(function() {
     if (looping) {
       looping = false;
       clearInterval(trackLoop);
+      console.log("Looping Stopped")
     }
     else {
       interval = oldInterval;
       looping = true;
-      playTracks(tracks);
+      console.log("Looping Started")
+      playTrack(track);
       trackLoop = setInterval(function() {
-        playTracks(tracks);
+        playTrack(track);
       }, interval)
     }
   });
