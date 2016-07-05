@@ -21,6 +21,23 @@ function bindKeyDown() {
       last_press_timestamp = this_press_timestamp;
     }
   });
+
+  $(document).keydown(function(event) {
+    if (event.keyCode == 82) {        // r
+      record();
+    } else if (event.keyCode === 80) { // p
+      playTracks(tracks);
+    } else if (event.keyCode === 88) { // x
+      console.log("in the stop keys handler");
+      stopSwitch();
+    } else if (event.keyCode === 85) { // u
+      undo();
+    } else if (event.keyCode === 83) { // s
+      saveTrack();
+    } else if (event.keyCode === 76) { // l
+      $('#loop-track').click();
+    }
+  });
 };
 
 // will unbind keys on specific event handler
