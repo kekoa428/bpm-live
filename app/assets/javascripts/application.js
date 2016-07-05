@@ -63,6 +63,12 @@ $(document).ready(function() {
     undo();
   })
 
+  // when guest clicks save
+  $("#save-guest-button").click(function(e) {
+    e.preventDefault();
+    $(".save-popup").css("display", "block");
+  })
+
   // save
   $("#save").click(function(e) {
     console.log("Save clicked, prevent default")
