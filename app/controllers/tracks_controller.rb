@@ -29,7 +29,7 @@ class TracksController < ApplicationController
 
         # associate track with user
         @track.users << current_user
-        puts "#{@track}***********************************************"
+        puts "#{@track.inspect}***********************************************"
 
         # loop through track and create new layer object for each item in array, with track_id - associate
         track = params[:track].values
@@ -38,20 +38,27 @@ class TracksController < ApplicationController
             ti = 0
             # layer index
             li = 0
-          until ti == (track.length - 1) do
+          until ti == (track.length) do
+            puts "tracklength: #{track.length}********************************************************"
             new_layer = Layer.create(track_id: @track.id)
             if new_layer
+              puts "We are in a new layer"
               # increase counter by 1 for each layer iteration
-              li += 1
               # counter to change to next beat
               b = 0
               # how many beats in this layer
-              length = track[0].length
+              length = track[ti].length
+              puts "length: #{length}============================================================================="
               until b == (length) do
-
+                puts "WE MAD IT TO B LOOP"
+                puts "li: #{li} **********************************************************************************"
+                puts "b: #{b} **********************************************************************************"
                 x = track[li].values[b][:rest]
+                puts "x: #{x} **********************************************************************************"
                 y = track[li].values[b][:keypress]
+                puts "y: #{y} **********************************************************************************"
                 z = track[li].values[b][:color]
+                puts "z: #{z} **********************************************************************************"
 
                 new_beat = Beat.create(
                   layer_id: new_layer.id,
@@ -59,12 +66,14 @@ class TracksController < ApplicationController
                   keypress: y,
                   color: z
                 )
-
+                puts "new_beat: #{new_beat}*********************************************************************************"
                 new_layer.beats << new_beat
                 b += 1
               end
+              li += 1
+              ti += 1
             else
-              li = 0
+              break
             end
             ti += 1
           end
