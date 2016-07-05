@@ -1,5 +1,6 @@
 App.room = App.cable.subscriptions.create {
   channel: "RoomChannel"
+  room_id: 1
   },
   connected: ->
     # Called when the subscription is ready for use on the server
@@ -9,15 +10,15 @@ App.room = App.cable.subscriptions.create {
 
   received: (data) ->
     console.log(data)
-    console.log("latency: #{Date.now() - data.message.date}")
-    data.message.keyCode
-    playKeypress(data.message.keyCode, data.message.color)
+    console.log("latency: #{Date.now() - data.beat.date}")
+    data.beat.keyCode
+    playKeypress(data.beat.keyCode, data.beat.color)
   # received: (data) ->
-  #   $('#messages').append data['message']
+  #   $('#messages').append data['beat']
     # Called when there's incoming data on the websocket for this channel
 
-  speak: (message) ->
-    @perform 'speak', message: message
+  speak: (beat) ->
+    @perform 'speak', beat: beat
 
 $(document).on 'keydown', 'body', (event) ->
   keyCode = event.keyCode
