@@ -3,6 +3,8 @@ function guestSave() {
   $("#save-guest-button").click(function(e) {
     e.preventDefault();
     $(".save-popup").css("display", "block");
+    console.log("Guest tracks var:");
+    console.log(tracks);
   })
 };
 
@@ -13,12 +15,12 @@ function saveTrack() {
     e.preventDefault();
 
     // send track back to DB (an array of layer objects).tracks is the recording
-
-    // ask for name here?
     var name = prompt("Your track is lonely! Give it a name.")
+    console.log("Tracks var:");
+    console.log(tracks);
     $.ajax({
       url: '/tracks',
-      data: {'track': tracks},
+      data: {'track': tracks, 'name': name},
       method: 'post'
     })
   })
