@@ -1,10 +1,6 @@
 var tracks = [];
 var layer = [];
 
-var track = {
-  layers = []
-}
-
 // .wav files
 var wav_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.wav",
   "vox1.wav", "vox2.wav", "vox3.wav", "vox4.wav"];
@@ -48,10 +44,8 @@ function playLayer(layer) {
   var rest = 0;
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
-    console.log(beat);
     rest += beat.rest;
-    createTimeout(playKeypress
-      , beat.keypress, beat.color, rest);
+    createTimeout(playKeypress, beat.keypress, beat.color, rest);
   }
 }
 
@@ -100,3 +94,22 @@ function undo() {
 function stopSwitch() {
   stop = !stop;
 }
+
+function formatTrack(track) {
+  var layerCount = track.layers.length;
+  var formattedTrack = [];
+
+  for (var i = 0; i < layerCount; i++) {
+    beats = track.layers[i].beats;
+    formattedTrack[i] = beats;
+  }
+
+  return formattedTrack;
+}
+
+
+
+
+
+
+
