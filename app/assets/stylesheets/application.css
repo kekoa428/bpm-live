@@ -151,3 +151,66 @@ nav p {
 body h1, h2, h3, h4, p, th, td, li {
   color: white;
 }
+
+/*save popup*/
+.save-popup {
+  display: none;
+  float: right;
+  height: 40px;
+  width: 140px;
+  background-color: black;
+  text-align: center;
+  position: relative;
+  color: #ccc;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px white;
+  margin: 25px;
+  min-height: 50px;
+  border: 1px solid #333;
+  text-shadow: 0 0 1px #000;
+  /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
+  left: 48px;
+  bottom: 10px;
+}
+
+.save-popup::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  border: 0.8em solid transparent;
+  position: absolute;
+
+  left: 45%;
+  top: -30px;
+  border-bottom: 10px solid white;
+}
+
+
+#my_popup {
+  transform: scale(0.8);
+}
+
+.my_popup_open {
+  margin-left: 2px;
+}
+
+.popup_visible #my_popup {
+  transform: scale(1);
+  background-color: white;
+  line-height: 1;
+  padding: 1em 1.5em 1em 1.5em;
+  border-radius: .5em;
+}
+
+#my_popup ul {
+  margin-left: -20px;
+}
+
+#my_popup ul li{
+  margin: 5px 0;
+}
+
+#my_popup h2, p, li {
+  color: black;
+}

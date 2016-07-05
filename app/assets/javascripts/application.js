@@ -12,8 +12,9 @@
 //
 //= require jquery2
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+//= require 'save'
+//= require 'instruction'
 //= require 'colorFunctions'
 //= require 'musicFunctions'
 //= require 'keypress.js'
@@ -24,10 +25,32 @@ var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#
 
 $(document).ready(function() {
 
+  // Fade in divs on load of page
   $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
     $(this).delay(i*200).fadeIn(200);
     showColor(div[i], loadColors[i]);
   });
+  // bind keypress functions
+  bindKeyUp();
+  bindKeyDown();
+
+  // for overlay of keypress instructions
+  displayIntructions();
+
+  // $('.home-link').on('click', function(e){
+  $(document).on('click', '.home-link', function(e){
+    console.log('EVENT HANDLER - rebinding keys');
+    console.log(this);
+    rebindKeys();
+  });
+
+  $(document).on('focus', 'input', function(e){
+    console.log('EVENT HANDLER - unbind keys');
+    console.log(this);
+    unbindKeys();
+  });
+
+  // This is the end of the binding functinality
 
   $('#play-track').click(function(event) {
     event.preventDefault();
@@ -53,18 +76,9 @@ $(document).ready(function() {
     undo();
   })
 
-  // save
-  $("#save").click(function(e) {
-    console.log("Save clicked, prevent default")
-    e.preventDefault();
-    var name = prompt("Your track is lonely! Give it a name.")
+  guestSave();
 
-    $.ajax({
-      url: '/tracks',
-      data: {'track': tracks},
-      method: 'post'
-    })
-  })
+  saveTrack();
 
   // play track from user profile
   $(".play-track-from-user-profile").click(function(e) {
@@ -100,5 +114,4 @@ $(document).ready(function() {
       }, interval)
     }
   });
-
 });
