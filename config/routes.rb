@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
 
-  # resources :rooms, only: [:new, :show, :create]
+  resources :rooms, only: [:new, :show, :create]
 
   resources :tracks, only: [:index, :new, :create, :show, :destroy] do
     resources :layers, only: [:index, :new, :create, :show, :destroy] do
