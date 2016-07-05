@@ -18,13 +18,14 @@
         <p> <%= link_to 'View my tracks', user_path( current_user.id ) %></p>
         <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-right' %> |
         <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-right'  %>
+        <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-right' %>
 
       <% else %>
         <%= link_to "Sign up", new_user_registration_path, :class => 'nav-right'  %> |
         <%= link_to "Login", new_user_session_path, :class => 'nav-right'  %>
+        <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-right' %>
       <% end %>
 
-      <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-right' %>
       <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-right' %>
       <%= link_to 'Record', root_path, id: 'record', :class => 'nav-right' %>
       <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-right' %>
@@ -32,6 +33,9 @@
       <%= link_to 'Play', root_path, remote: true, id: 'play-track', :class => 'nav-right' %>
 
     </nav>
+
+    <!-- popup when guest clicks 'save' -->
+    <div class="save-popup">You must be signed in to save tracks.</div>
 
     <!-- login -->
     <% if notice %>
