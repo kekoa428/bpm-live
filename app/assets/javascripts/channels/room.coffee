@@ -1,23 +1,24 @@
-App.room = App.cable.subscriptions.create {
-  channel: "RoomChannel"
-  },
-  connected: ->
-    # Called when the subscription is ready for use on the server
+$(document).ready ->
+  App.room = App.cable.subscriptions.create {
+    channel: "RoomChannel"
+    room_id: $('#main-grid').data('room-id')
+    },
+    collection: -> $("[data-channel='rooms']")
 
-  disconnected: ->
-    # Called when the subscription has been terminated by the server
+    connected: ->
 
-  received: (data) ->
-    console.log(data)
-    console.log("latency: #{Date.now() - data.beat.date}")
-    data.beat.keyCode
-    playKeypress(data.beat.keyCode, data.beat.color)
-  # received: (data) ->
-  #   $('#messages').append data['beat']
-    # Called when there's incoming data on the websocket for this channel
+    disconnected: ->
+      # Called when the subscription has been terminated by the server
 
-  speak: (beat) ->
-    @perform 'speak', beat: beat
+    received: (data) ->
+      console.log(data)
+      console.log("latency: #{Date.now() - data.beat.date}")
+      data.beat.keyCode
+      playKeypress(data.beat.keyCode, data.beat.color)
+
+    speak: (beat) ->
+      @perform 'speak', beat: beat, room_id: @collection().data('room-id')
+
 
 $(document).on 'keydown', 'body', (event) ->
   keyCode = event.keyCode
