@@ -5,7 +5,17 @@ function guestSave() {
     $(".save-popup").css("display", "block");
     console.log("Guest tracks var:");
     console.log(tracks);
-    // Cookies.set("guest_track", tracks, {explires: 1, path: "/"});
+    Cookies.set("guest_track", tracks, {expires: 1, path: "/"});
+
+    console.log("Cookies:");
+    console.log(Cookies.get('guest_track'));
+
+    // code to test if cookies cleared:
+    //   Cookies.remove("guest_track", {path: "/"});
+    //   if (JSON.stringify(Cookies.get()) === JSON.stringify({})) {
+    //     console.log("empty");
+    //   }
+
   })
 };
 
@@ -14,6 +24,12 @@ function saveTrack() {
   $("#save").click(function(e) {
     console.log("Save clicked, prevent default")
     e.preventDefault();
+
+    // if cookie not empty, i.e. there is a guest_track
+    if (JSON.stringify(Cookies.get()) !== JSON.stringify({})) {
+      // set track = guest_track
+      tracks = Cookies.get('guest_track');
+    }
 
     // send track back to DB (an array of layer objects).tracks is the recording
     var name = prompt("Your track is lonely! Give it a name.")
