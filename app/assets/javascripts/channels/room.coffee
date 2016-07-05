@@ -1,6 +1,5 @@
 App.room = App.cable.subscriptions.create {
   channel: "RoomChannel"
-  room_id: 1
   },
   connected: ->
     # Called when the subscription is ready for use on the server
@@ -22,7 +21,7 @@ App.room = App.cable.subscriptions.create {
 
 $(document).on 'keydown', 'body', (event) ->
   keyCode = event.keyCode
-  App.room.speak { keyCode: keyCode, date: Date.now() }
+  App.room.speak { keyCode: keyCode, date: Date.now()}
 
 # $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
 #   if event.keyCode is 13 # return/enter = send
