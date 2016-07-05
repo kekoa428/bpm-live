@@ -19,13 +19,12 @@ $(document).ready ->
     speak: (beat) ->
       @perform 'speak', beat: beat, room_id: @collection().data('room-id')
 
-
 $(document).on 'keydown', 'body', (event) ->
   keyCode = event.keyCode
   App.room.speak { keyCode: keyCode, date: Date.now()}
 
 # $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-#   if event.keyCode is 13 # return/enter = send
+#   if event.keyCode is 13 # return/enter = sendpath
 #     App.room.speak event.target.value
 #     event.target.value = ''
 #     event.preventDefault()
