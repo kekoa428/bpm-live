@@ -1,17 +1,3 @@
-// // CODE TO ATTEMPT RIPPLE - this gets the offset for the top left corner
-// function getOffset( el ) {
-//     var _x = 0;
-//     var _y = 0;
-//     while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-//         _x += el.offsetLeft - el.scrollLeft;
-//         _y += el.offsetTop - el.scrollTop;
-//         el = el.offsetParent;
-//     }
-//     return { top: _y, left: _x };
-// }
-// var x = getOffset( document.getElementById('yourElId') ).left;
-// var y = getOffset( document.getElementById('yourElId') ).top;
-
 function showColor(id, color) {
   var square = $('#key-'+ id.toString());
   var square_limit = square;
@@ -61,15 +47,12 @@ function showColor(id, color) {
   });
   $('.ripple-effect-wrap:last').append( ripple );
 
-
-  // $('#key-' + id.toString()).css('background-color', color);
   // Remove rippling component after half second
   setTimeout( function(){
   	ripple_effect_wrap.fadeOut(function(){
   		$(this).remove();
   	});
   }, 100 );
-
 
   $('#key-' + id.toString()).effect('shake', { direction: "left", distance: 5, times: 5 } ).css('background-color', color);
 }

@@ -79,18 +79,27 @@ class TracksController < ApplicationController
 
   def show
     @track = Track.find(params[:id])
-    @beat_array = []
+    @output = []
     i = 0
+    single_layer = {}
     @track.layers.each do |layer|
-      @beat_array << i.to_s
-      i += 1
+      key = i.to_s
       layer.beats.each do |beat|
-        @beat_array << beat.attributes
+        single_layer[key] = {
+          rest: beat.rest,
+          keypress: beat.keypress,
+          color: beat.color
+        }
+        i += 1
       end
+      @output << single_layer
+      single_layer = {}
     end
-    p @beat_array
+    @output
 
-    render '/tracks/_track', layout: false
+    render '/tracks/_track', layout: false, json: @output
+
+  end
     # puts "++++++ hello from DOM click 'play'"
     # puts "TRACKID: #{params[:id]}"
     # track = Track.find(params[:id])
@@ -103,7 +112,6 @@ class TracksController < ApplicationController
     #   format.json {redirect_to(root_path, :notice => "JSON RENDERED")}
     #   format.js {redirect_to(root_path, :notice => "JS RENDERED")}
     # end
-  end
 
   def destroy
 
