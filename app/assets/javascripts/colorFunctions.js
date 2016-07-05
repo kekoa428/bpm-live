@@ -80,12 +80,12 @@ function boxChangeBack(id) {
 }
 
 // Time out for each box?
-function createTimeout(f,dynamicParameter,interval) {
-  timer = setTimeout(function() { f(dynamicParameter); }, interval);
+function createTimeout(f, dynamicParameter, interval) {
+  setTimeout(function() { f(dynamicParameter); }, interval);
 }
 
 function createTimeout(f, firstParam, secondParam, interval) {
-  timer = setTimeout(function() { f(firstParam, secondParam); }, interval);
+  setTimeout(function() { f(firstParam, secondParam); }, interval);
 }
 
 // Snake through boxes with colors on page load (WIP)
