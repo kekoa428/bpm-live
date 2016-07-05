@@ -10,11 +10,14 @@ function guestSave() {
     console.log("Cookies:");
     console.log(Cookies.get('guest_track'));
 
-    // code to test if cookies cleared:
-    //   Cookies.remove("guest_track", {path: "/"});
-    //   if (JSON.stringify(Cookies.get()) === JSON.stringify({})) {
-    //     console.log("empty");
-    //   }
+    // need different code to test if cookies cleared:
+      Cookies.remove("guest_track", {path: "/"});
+
+      if (typeof Cookies.get('guest_track') === "undefined") {
+        console.log("empty");
+      }
+
+      console.log(Cookies.get());
 
   })
 };
@@ -28,7 +31,7 @@ function saveTrack() {
     // if cookie not empty, i.e. there is a guest_track
     if (JSON.stringify(Cookies.get()) !== JSON.stringify({})) {
       // set track = guest_track
-      tracks = Cookies.get('guest_track');
+      tracks = Cookies.get('guest_track')
     }
 
     // send track back to DB (an array of layer objects).tracks is the recording
