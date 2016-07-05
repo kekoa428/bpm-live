@@ -1,4 +1,4 @@
-var tracks = [];
+var track = [];
 var layer = [];
 
 // .wav files
@@ -44,16 +44,14 @@ function playLayer(layer) {
   var rest = 0;
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
-    console.log(beat);
     rest += beat.rest;
-    createTimeout(playKeypress
-      , beat.keypress, beat.color, rest);
+    createTimeout(playKeypress, beat.keypress, beat.color, rest);
   }
 }
 
-function playTracks(tracks) {
-  for (var i = 0; i < tracks.length; i++) {
-    playLayer(tracks[i]);
+function playTrack(track) {
+  for (var i = 0; i < track.length; i++) {
+    playLayer(track[i]);
   }
 }
 
@@ -78,21 +76,40 @@ function record() {
     last_press_timestamp = null;
     console.log('i stopped recording')
     if (layer.length > 0) {
-      tracks.push(layer);
+      track.push(layer);
       layer = [];
     }
   }
 }
 
-function playAndRecord(tracks) {
-  playTracks(tracks);
+function playAndRecord(track) {
+  playTrack(track);
   record();
 }
 
 function undo() {
-  tracks.pop();
+  track.pop();
 }
 
 function stopSwitch() {
   stop = !stop;
 }
+
+function formatTrack(track) {
+  var layerCount = track.layers.length;
+  var formattedTrack = [];
+
+  for (var i = 0; i < layerCount; i++) {
+    beats = track.layers[i].beats;
+    formattedTrack[i] = beats;
+  }
+
+  return formattedTrack;
+}
+
+
+
+
+
+
+
