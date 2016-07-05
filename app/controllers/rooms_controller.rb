@@ -9,12 +9,12 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = current_user.rooms.new(path: Room.generate_url)
+    @room = current_user.rooms.new
     if @room.save
       flash[:success] = 'Beat room added!'
-      redirect_to rooms_path
+      redirect_to "/rooms/#{@room.id}"
     else
-      render 'new'
+      redirect_to "/users/sign_in"
     end
   end
 end
