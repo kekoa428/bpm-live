@@ -51,11 +51,14 @@ $(document).ready(function() {
   });
 
   // This is the end of the binding functinality
+  $('#record').click(function(event) {
+    event.preventDefault();
+    record();
+  })
 
   $('#play-track').click(function(event) {
     event.preventDefault();
-    console.log(tracks);
-    playTracks(tracks);
+    playTrack(track);
   })
 
   $('#stop-track').click(function(event) {
@@ -64,16 +67,12 @@ $(document).ready(function() {
     console.log(stop);
   })
 
-  // Records a track on click
-  $('#record').click(function(event) {
-    event.preventDefault();
-    record();
-  })
 
   // Removes last track recorded
   $('#undo').click(function(event) {
     event.preventDefault();
     undo();
+    console.log('Removed the last layer')
   })
 
   guestSave();
@@ -85,14 +84,13 @@ $(document).ready(function() {
     e.preventDefault();
     var play_button_clicked = $(this);
     var id_of_track_to_play = play_button_clicked.attr('id');
-    console.log(id_of_track_to_play);
 
     $.ajax({
       url: "/tracks/" + id_of_track_to_play
     })
       .done(function(response){
-        console.log(response);
-        response_tracks = response;
+        playableTrack = formatTrack(response);
+        playTrack(playableTrack);
       })
   })
 
@@ -104,13 +102,15 @@ $(document).ready(function() {
     if (looping) {
       looping = false;
       clearInterval(trackLoop);
+      console.log("Looping Stopped")
     }
     else {
       interval = oldInterval;
       looping = true;
-      playTracks(tracks);
+      console.log("Looping Started")
+      playTrack(track);
       trackLoop = setInterval(function() {
-        playTracks(tracks);
+        playTrack(track);
       }, interval)
     }
   });
