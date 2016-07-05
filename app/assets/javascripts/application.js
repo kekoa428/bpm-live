@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require 'save'
+//= require 'instruction'
 //= require 'colorFunctions'
 //= require 'musicFunctions'
 //= require 'keypress.js'
@@ -32,6 +33,9 @@ $(document).ready(function() {
   // bind keypress functions
   bindKeyUp();
   bindKeyDown();
+
+  // for overlay of keypress instructions
+  displayIntructions();
 
   // $('.home-link').on('click', function(e){
   $(document).on('click', '.home-link', function(e){
@@ -116,14 +120,3 @@ $(document).ready(function() {
     }
   });
 });
-
-// MARKS INITAL CODE HELP !!!
-// function record_rest(start_time, end_time) {
-//   if (start_time && end_time) {
-//     track.push({ rest: (end_time - start_time) });
-//   }
-// }
-//
-// function record_keypress(key_code) {
-//   track.push({ keypress: key_code });
-// }

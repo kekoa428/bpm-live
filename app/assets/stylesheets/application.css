@@ -186,3 +186,31 @@ body h1, h2, h3, h4, p, th, td, li {
   border-bottom: 10px solid white;
 }
 
+
+#my_popup {
+  transform: scale(0.8);
+}
+
+.my_popup_open {
+  margin-left: 2px;
+}
+
+.popup_visible #my_popup {
+  transform: scale(1);
+  background-color: white;
+  line-height: 1;
+  padding: 1em 1.5em 1em 1.5em;
+  border-radius: .5em;
+}
+
+#my_popup ul {
+  margin-left: -20px;
+}
+
+#my_popup ul li{
+  margin: 5px 0;
+}
+
+#my_popup h2, p, li {
+  color: black;
+}
