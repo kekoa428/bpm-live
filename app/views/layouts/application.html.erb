@@ -21,8 +21,8 @@
         <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-right' %>
 
       <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'nav-right'  %> |
-        <%= link_to "Login", new_user_session_path, :class => 'nav-right'  %>
+        <%= link_to "Sign up", new_user_registration_path, :id => 'signup', :class => 'nav-right'  %> |
+        <%= link_to "Login", new_user_session_path, :id => 'login', :class => 'nav-right'  %>
         <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-right' %>
       <% end %>
 

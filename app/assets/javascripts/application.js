@@ -66,7 +66,7 @@ $(document).ready(function() {
   // when guest clicks save
   $("#save-guest-button").click(function(e) {
     e.preventDefault();
-    $(".save-popup").css("display", "block")
+    $(".save-popup").css("display", "block");
   })
 
   // save
