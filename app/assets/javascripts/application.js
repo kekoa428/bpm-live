@@ -13,30 +13,44 @@
 //= require jquery2
 //= require jquery_ujs
 //= require_tree .
+//= require 'save'
+//= require 'instruction'
 //= require 'colorFunctions'
 //= require 'musicFunctions'
 //= require 'keypress.js'
 //= require jquery-ui/effect-shake
+
 var div = ["7","8","9","4","5","6","1","2","3"];
 var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#28b463","#239b56","#1d8348"];
 
 $(document).ready(function() {
 
+  // Fade in divs on load of page
   $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
     $(this).delay(i*200).fadeIn(200);
     showColor(div[i], loadColors[i]);
-    // setTimeout($("#key-"+div[i]).css('background-color', 'black'), 1000);
+  });
+  // bind keypress functions
+  bindKeyUp();
+  bindKeyDown();
+
+  // for overlay of keypress instructions
+  displayIntructions();
+
+  // $('.home-link').on('click', function(e){
+  $(document).on('click', '.home-link', function(e){
+    console.log('EVENT HANDLER - rebinding keys');
+    console.log(this);
+    rebindKeys();
   });
 
-  // $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
-  //   $(this).css('background-color', 'black').delay(i*400)
-  //   // setTimeout($("#key-"+div[i]).css('background-color', 'black'), 1000);
-  // });
+  $(document).on('focus', 'input', function(e){
+    console.log('EVENT HANDLER - unbind keys');
+    console.log(this);
+    unbindKeys();
+  });
 
-  // $("7, 8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
-  //   $("#key-"+this).delay(i*400).fadeIn(200);
-  // });
-
+  // This is the end of the binding functinality
 
   $('#play-track').click(function(event) {
     event.preventDefault();
@@ -62,21 +76,9 @@ $(document).ready(function() {
     undo();
   })
 
-  // save
-  $("#save").click(function(e) {
-    console.log("Save clicked, prevent default")
-    e.preventDefault();
+  guestSave();
 
-    // send track back to DB (an array of layer objects).tracks is the recording
-
-    // ask for name here?
-    var name = prompt("Your track is lonely! Give it a name.")
-    $.ajax({
-      url: '/tracks',
-      data: {'track': tracks},
-      method: 'post'
-    })
-  })
+  saveTrack();
 
   // play track from user profile
   $(".play-track-from-user-profile").click(function(e) {
@@ -84,21 +86,16 @@ $(document).ready(function() {
     var play_button_clicked = $(this);
     var id_of_track_to_play = play_button_clicked.attr('id');
     console.log(id_of_track_to_play);
+
     $.ajax({
       url: "/tracks/" + id_of_track_to_play
     })
-
-    .done(function(response){
-      console.log(response);
-    })
-
-    // find contents of track to play, the array
-    // var contents_of_track_to_play =
-
-
-    // LASTLY:
-    // playTracks( track.contents );
+      .done(function(response){
+        console.log(response);
+        response_tracks = response;
+      })
   })
+
   // Loops tracks
   $('#loop-track').click(function(event) {
     event.preventDefault();
@@ -117,28 +114,4 @@ $(document).ready(function() {
       }, interval)
     }
   });
-
 });
-
-// colorLoop();
-//   //openOverlay();
-// });
-//$('#main-overlay-close-btn').click(closeOverlay);
-// /* Open when someone clicks on the span element */
-// function openOverlay() {
-//     document.getElementById("main-overlay").style.width = "100%";
-// }
-//
-// /* Close when someone clicks on the "x" symbol inside the :overlay */
-// function closeOverlay() {
-//     document.getElementById("main-overlay").style.width = "0%";
-// }
-// function record_rest(start_time, end_time) {
-//   if (start_time && end_time) {
-//     track.push({ rest: (end_time - start_time) });
-//   }
-// }
-//
-// function record_keypress(key_code) {
-//   track.push({ keypress: key_code });
-// }

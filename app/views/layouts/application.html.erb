@@ -11,20 +11,22 @@
 
   <body class="<%= controller_name %> <%= action_name %>">
     <nav>
-      <a href="/">BPM Live</a>
+      <a class="home-link" href="/">BPM Live</a>
+      <button class="my_popup_open">Instructions</button>
 
       <% if user_signed_in? %>
         <p>Logged in as <%= current_user.email %></p>
         <p> <%= link_to 'View my tracks', user_path( current_user.id ) %></p>
         <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-right' %> |
         <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-right'  %>
+        <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-right' %>
 
       <% else %>
-        <%= link_to "Sign up", new_user_registration_path, :class => 'nav-right'  %> |
-        <%= link_to "Login", new_user_session_path, :class => 'nav-right'  %>
+        <%= link_to "Sign up", new_user_registration_path, :id => 'signup', :class => 'nav-right'  %> |
+        <%= link_to "Login", new_user_session_path, :id => 'login', :class => 'nav-right'  %>
+        <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-right' %>
       <% end %>
 
-      <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-right' %>
       <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-right' %>
       <%= link_to 'Record', root_path, id: 'record', :class => 'nav-right' %>
       <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-right' %>
@@ -32,6 +34,19 @@
       <%= link_to 'Play', root_path, remote: true, id: 'play-track', :class => 'nav-right' %>
 
     </nav>
+    <div id="my_popup">
+      <h2>INSTRUCTIONS:</h2>
+        <ul>
+          <li>USE THE KEYS 1-9 TO PLAY SOUNDS</li>
+          <li>PLAY/STOP - "SPACE"</li>
+          <li>RECORD - "R"</li>
+          <li>UNDO - "U"</li>
+          <li>SAVE - "S"</li>
+          <li>LOOP - "L"</li>
+        </ul>
+    </div>
+    <!-- popup when guest clicks 'save' -->
+    <div class="save-popup">You must be signed in to save tracks.</div>
 
     <!-- login -->
     <% if notice %>
@@ -42,5 +57,7 @@
     <% end %>
 
     <%= yield %>
+
+    <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
   </body>
 </html>
