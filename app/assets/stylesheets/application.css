@@ -148,10 +148,6 @@ nav p {
   overflow: hidden;
 }
 
-body h1, h2, h3, h4, p, th, td, li {
-  color: white;
-}
-
 .save-popup {
   z-index: 100;
   display: none;
@@ -213,4 +209,8 @@ body h1, h2, h3, h4, p, th, td, li {
 
 #my_popup h2, p, li {
   color: black;
+}
+
+body h1, h2, h3, h4, p, th, td, li, label {
+  color: white;
 }
