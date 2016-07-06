@@ -27,9 +27,21 @@ $(document).ready(function() {
 
   // Fade in divs on load of page
   $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").hide().each(function(i) {
-    $(this).delay(i*200).fadeIn(200);
+    $(this).delay(i*100).fadeIn(100);
     showColor(div[i], loadColors[i]);
+    setTimeout(fadeToBlack, i*100 + 1000, div[i]);
   });
+
+  // $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").each(function(i) {
+  //
+  //   $('#key-' + id).css('background-color', 'black');
+  // });
+
+  // for (var i = 0; i < div.length; i++){
+  //   $('#key-' + div[i]).css('background-color', 'black').fadeOut(200);
+  // };
+
+
   // bind keypress functions
   bindKeyUp();
   bindKeyDown();
@@ -51,6 +63,10 @@ $(document).ready(function() {
   });
 
   // This is the end of the binding functinality
+  $('#record').click(function(event) {
+    event.preventDefault();
+    record();
+  })
 
   $('#play-track').click(function(event) {
     event.preventDefault();
@@ -63,11 +79,6 @@ $(document).ready(function() {
     console.log(stop);
   })
 
-  // Records a track on click
-  $('#record').click(function(event) {
-    event.preventDefault();
-    record();
-  })
 
   // Removes last track recorded
   $('#undo').click(function(event) {

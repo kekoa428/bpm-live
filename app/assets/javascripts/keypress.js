@@ -13,12 +13,28 @@ function bindKeyDown() {
   $(document).keydown(function(event) {
     var key_code = event.keyCode;
     var color = randomColor();
-    playKeypress(key_code, color);
 
     if (recording) {
       this_press_timestamp = new Date().getTime();
       recordBeat(key_code, last_press_timestamp, this_press_timestamp, color);
       last_press_timestamp = this_press_timestamp;
+    }
+  });
+
+  $(document).keydown(function(event) {
+    if (event.keyCode == 82) {        // r
+      record();
+    } else if (event.keyCode === 80) { // p
+      playTracks(tracks);
+    } else if (event.keyCode === 88) { // x
+      console.log("in the stop keys handler");
+      stopSwitch();
+    } else if (event.keyCode === 85) { // u
+      undo();
+    } else if (event.keyCode === 83) { // s
+      saveTrack();
+    } else if (event.keyCode === 76) { // l
+      $('#loop-track').click();
     }
   });
 };

@@ -14,7 +14,7 @@ function saveTrack() {
     var name = prompt("Your track is lonely! Give it a name.")
     $.ajax({
       url: '/tracks',
-      data: {'track': track},
+      data: {'track': track, 'name': name},
       method: 'post'
     })
   })
