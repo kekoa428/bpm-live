@@ -87,6 +87,12 @@ $(document).ready(function() {
     console.log('Removed the last layer')
   })
 
+  $('#switch_sounds').click(function(event) {
+    event.preventDefault();
+    console.log('Switched the sounds');
+    switchSounds();
+  })
+
   guestSave();
 
   saveTrack();
