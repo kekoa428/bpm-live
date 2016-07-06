@@ -20,6 +20,7 @@
 //= require 'musicFunctions'
 //= require 'keypress.js'
 //= require jquery-ui/effect-shake
+//= require 'js.cookie'
 
 var div = ["7","8","9","6","3","2","1","4","5"];
 var order = ["#key-7", "#key-8", "#key-9", "#key-6", "#key-3", "#key-2", "#key-1", "#key-4", "#key-5"];
@@ -95,6 +96,10 @@ $(document).ready(function() {
   });
 
   // This is the end of the binding functinality
+  $('#record').click(function(event) {
+    event.preventDefault();
+    record();
+  })
 
   $('#play-track').click(function(event) {
     event.preventDefault();
@@ -107,17 +112,18 @@ $(document).ready(function() {
     console.log(stop);
   })
 
-  // Records a track on click
-  $('#record').click(function(event) {
-    event.preventDefault();
-    record();
-  })
 
   // Removes last track recorded
   $('#undo').click(function(event) {
     event.preventDefault();
     undo();
     console.log('Removed the last layer')
+  })
+
+  $('#switch_sounds').click(function(event) {
+    event.preventDefault();
+    console.log('Switched the sounds');
+    switchSounds();
   })
 
   guestSave();

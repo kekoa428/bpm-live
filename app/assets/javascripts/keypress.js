@@ -22,7 +22,6 @@ function bindKeyDown() {
   $(document).keydown(function(event) {
     var key_code = event.keyCode;
     var color = randomColor();
-    playKeypress(key_code, color);
 
     if (recording) {
       this_press_timestamp = new Date().getTime();
