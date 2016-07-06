@@ -79,13 +79,18 @@ function boxChangeBack(id) {
   $('#key-' + id).css('background-color', 'black');
 }
 
+function fadeToBlack(id) {
+  var css_selector = '#key-' + id;
+  $(css_selector).animate({ 'backgroundColor': 'black' }, 300);
+}
+
 // Time out for each box?
-function createTimeout(f,dynamicParameter,interval) {
-  timer = setTimeout(function() { f(dynamicParameter); }, interval);
+function createTimeout(f, dynamicParameter, interval) {
+  setTimeout(function() { f(dynamicParameter); }, interval);
 }
 
 function createTimeout(f, firstParam, secondParam, interval) {
-  timer = setTimeout(function() { f(firstParam, secondParam); }, interval);
+  setTimeout(function() { f(firstParam, secondParam); }, interval);
 }
 
 // Snake through boxes with colors on page load (WIP)
