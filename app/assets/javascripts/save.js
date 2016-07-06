@@ -12,12 +12,6 @@ function guestSave() {
     console.log("In Guest save.. cookies:");
     console.log(Cookies.get('guest_track'));
 
-    // this is a way to test if cookies cleared:
-      // Cookies.remove("guest_track", {path: "/"});
-      // if (typeof Cookies.get('guest_track') === "undefined") {
-      //   console.log("empty");
-      // }
-
   })
 };
 
@@ -29,11 +23,15 @@ function saveTrack() {
     console.log("tracks before function. should be undefined b/c haven't recorded anything");
     console.log(tracks);
 
+    // if i click record, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
+
+    // if i click logout, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
+
     // if cookie not empty, there is a guest_track
     if (typeof Cookies.get('guest_track') !== "undefined") {
       // set tracks = guest_track
       var cookies = Cookies.get('guest_track');
-      var tracks = JSON.parse(cookies);
+      tracks = JSON.parse(cookies);
     }
 
     console.log("tracks after function.. should be same as cookies");
@@ -46,6 +44,11 @@ function saveTrack() {
       url: '/tracks',
       data: {'track': tracks, 'name': name},
       method: 'post'
+    })
+
+    .done(function(response) {
+      // clear cookies after save a track (make sure Cookies.get('guest_track') is undefined after clear)
+
     })
   })
 }
