@@ -30,6 +30,19 @@ nav {
   padding-bottom: 10px;
 }
 
+.music-functions {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  height: 1.5em;
+  padding-bottom: 0;
+}
+
+.nav-center {
+  text-align: center;
+  padding-left: 2em;
+}
+
 .nav-right {
   float: right;
   padding-right: 10px;
@@ -148,10 +161,6 @@ nav p {
   overflow: hidden;
 }
 
-body h1, h2, h3, h4, p, th, td, li {
-  color: white;
-}
-
 .save-popup {
   z-index: 100;
   display: none;
@@ -213,4 +222,11 @@ body h1, h2, h3, h4, p, th, td, li {
 
 #my_popup h2, p, li {
   color: black;
+}
+
+#outer-div {
+  margin-top: -25px;
+
+body h1, h2, h3, h4, p, th, td, li, label {
+  color: white;
 }

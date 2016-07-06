@@ -16,6 +16,7 @@ function guestSave() {
 };
 
 function clearCookies() {
+  console.log("clearing cookies");
   Cookies.remove('guest_track', { path: '/' });
   // after clear Cookies.get('guest_track') returns undefined
 };

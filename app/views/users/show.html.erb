@@ -7,7 +7,7 @@
     <% @tracks.each do |track| %>
       <li>
         <%= track.id  %>
-        <%= (track.name != nil) ? "- #{track.name}" : "- no name" %>
+        <p><%= (track.name != nil) ? "- #{track.name}" : "- no name" %></p>
         <!-- gave id in link_to so that when click play, JS knows which track to play -->
         - <%= link_to 'play', root_path, remote: true, class: 'play-track-from-user-profile', :id => track.id %>
       </li>
