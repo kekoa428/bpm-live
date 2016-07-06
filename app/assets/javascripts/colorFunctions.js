@@ -54,19 +54,16 @@ function showColor(id, color) {
   	});
   }, 100 );
 
-  $('#key-' + id.toString()).effect('shake', { direction: "left", distance: 5, times: 5 } ).css('background-color', color);
+  $('#key-' + id.toString()).effect('shake', { direction: "left", distance: 2, times: 7 } ).css('background-color', color);
 }
-
-// var colors = [
-//   "#1abc9c", "#f39c12", "#16a085", "#f1c40f",
-//   "#2ecc71", "#27ae60", "#e67e22", "#d35400",
-//   "#3498db", "#2980b9", "#e74c3c", "#c0392b",
-//   "#9b59b6", "#8e44ad", "#ecf0f1", "#bdc3c7"
-// ];
 
 // Random color generator
 function randomColor() {
-  return ('#' + Math.floor(Math.random()*16777215).toString(16));
+  var colors = randomColorSwatch();
+
+  return colors[Math.floor(Math.random()*colors.length)];
+
+  // return ('#' + Math.floor(Math.random()*16777215).toString(16));
   // return colors[Math.floor(Math.random() * colors.length)];
 }
 
@@ -96,26 +93,19 @@ function fadeInBorder(id) {
   $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ opacity: 1.0 }, 6000);
 }
 
-
-// Time out for each box?
-function createTimeout(f, dynamicParameter, interval) {
-  var timer;
-  timer = setTimeout(function() { f(dynamicParameter); }, interval);
-  return timer;
-}
-
 function createTimeout(f, firstParam, secondParam, thirdParam, interval) {
   var timer;
   timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
   return timer;
 }
 
-// Snake through boxes with colors on page load (WIP)
-function colorLoop() {
-  var start_time = 0;
-  for(var i = 18; i > 0; i--) {
-    var id = (i % 9) || 9;
-    createTimeout(boxChange, id, start_time += 150);
-    createTimeout(boxChangeBack, id, start_time += 150);
-  };
+// Time out for each box?
+function createTimeout(f, dynamicParameter, interval) {
+  var timer;
+  // setTimeout(function() { f(dynamicParameter); }, interval);
+
+  timer = setTimeout(function() { f(dynamicParameter); }, interval);
+  console.log("in the 3 param createTimeout, timer:");
+  console.log(timer);
+  return timer;
 }

@@ -38,13 +38,12 @@ function playSound(sound_file) {
   // }
 }
 
-
 function playKeypress(key_code, color, sound) {
   if (key_code < 49 || key_code > 58) { return; }
   var sound_file = soundFiles[sound][key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
-  currentSetTimeouts.push(createTimeout(boxChangeBack, key_code - 48, 1000000));
+  currentSetTimeouts.push(createTimeout(boxChangeBack, key_code - 48, 300));
 }
 
 function playLayer(layer) {
