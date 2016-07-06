@@ -15,16 +15,9 @@ function guestSave() {
   })
 };
 
-// if i click record, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
-function ifClickRecordClearCookies() {
-  $("#record").click(function(e) {
-      e.preventDefault();
-      console.log("RECORD CLICKED");
-
-      // Cookies.remove('guest_track', { path: '' });
-      // console.log("After wipe tracks");
-      // console.log(tracks);
-    })
+function clearCookies() {
+  Cookies.remove('guest_track', { path: '/' });
+  // after clear Cookies.get('guest_track') returns undefined
 };
 
 // save
@@ -36,7 +29,6 @@ function saveTrack() {
     console.log(tracks);
 
     // if i click record, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
-
 
     // if i click logout, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
 
@@ -61,8 +53,11 @@ function saveTrack() {
     })
 
     .done(function(response) {
-      // clear cookies after save a track (make sure Cookies.get('guest_track') is undefined after clear)
-
+      // clear cookies and track []'s after save track
+      clearCookies();
+      tracks = [];
     })
   })
+
+
 }
