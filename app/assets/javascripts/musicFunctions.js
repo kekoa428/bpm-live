@@ -1,5 +1,6 @@
 var track = [];
 var layer = [];
+var currentSetTimeouts = [];
 
 var sounds = {
   // .wav files
@@ -30,12 +31,12 @@ function playSound(sound_file) {
   if (stop === false) {
     audio.play();
   }
-  // FIXME: Should be a better way to pause this
-  else if (stop === true) {
-    audio.pause();
-    // audio.currentTime = 0;
-    throw "";
-  }
+  // // FIXME: Should be a better way to pause this
+  // else if (stop === true) {
+  //   audio.pause();
+  //   // audio.currentTime = 0;
+  //   throw "";
+  // }
 }
 
 function playKeypress(key_code, color) {
@@ -44,7 +45,7 @@ function playKeypress(key_code, color) {
   var sound_file = soundFiles[key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
-  createTimeout(boxChangeBack, key_code - 48, 1000000);
+  currentSetTimeouts.push(createTimeout(boxChangeBack, key_code - 48, 1000000));
 }
 
 function playLayer(layer) {
@@ -52,7 +53,7 @@ function playLayer(layer) {
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
     rest += beat.rest;
-    createTimeout(playKeypress, beat.keypress, beat.color, rest);
+    currentSetTimeouts.push(createTimeout(playKeypress, beat.keypress, beat.color, rest));
   }
 }
 
@@ -99,7 +100,12 @@ function undo() {
 }
 
 function stopSwitch() {
-  stop = !stop;
+  looping = false;
+  clearInterval(trackLoop);
+  for(var i = 0; i < currentSetTimeouts.length; i++ ) {
+    clearTimeout(currentSetTimeouts[i]);
+  };
+  currentSetTimeouts = [];
 }
 
 function formatTrack(track) {
