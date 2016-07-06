@@ -79,6 +79,11 @@ function boxChangeBack(id) {
   $('#key-' + id).css('background-color', 'black');
 }
 
+function fadeToBlack(id) {
+  var css_selector = '#key-' + id;
+  $(css_selector).animate({ 'backgroundColor': 'black' }, 300);
+}
+
 // Time out for each box?
 function createTimeout(f, dynamicParameter, interval) {
   setTimeout(function() { f(dynamicParameter); }, interval);
