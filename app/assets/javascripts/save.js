@@ -15,6 +15,18 @@ function guestSave() {
   })
 };
 
+// if i click record, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
+function ifClickRecordClearCookies() {
+  $("#record").click(function(e) {
+      e.preventDefault();
+      console.log("RECORD CLICKED");
+
+      // Cookies.remove('guest_track', { path: '' });
+      // console.log("After wipe tracks");
+      // console.log(tracks);
+    })
+};
+
 // save
 function saveTrack() {
   $("#save").click(function(e) {
@@ -25,10 +37,12 @@ function saveTrack() {
 
     // if i click record, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
 
+
     // if i click logout, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
 
-    // if cookie not empty, there is a guest_track
-    if (typeof Cookies.get('guest_track') !== "undefined") {
+    // if cookie not empty, there is a guest_track. &&..
+    // if track is blank, i didn't try recording something else since i logged in.
+    if ((typeof Cookies.get('guest_track') !== "undefined") && (tracks.length === 0)){
       // set tracks = guest_track
       var cookies = Cookies.get('guest_track');
       tracks = JSON.parse(cookies);
