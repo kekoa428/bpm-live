@@ -12,7 +12,7 @@ $(document).ready(function() {
       console.log(data);
       console.log("latency: " + (Date.now() - data.beat.date));
       data.beat.keyCode;
-      return playKeypress(data.beat.keyCode, data.beat.color, data.beat.sound);
+      // return playKeypress(data.beat.keyCode, randomColor());
     },
     speak: function(beat) {
       return this.perform('speak', {
