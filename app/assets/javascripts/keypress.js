@@ -1,5 +1,14 @@
+var colorSweepTimeout;
+
+function resetIdleTimer() {
+  clearInterval(colorSweepTimeout);
+  //colorSweep(colorSwatch[i]);
+  colorSweepTimeout = setInterval(colorSweep, 10000, randomColorSwatch());
+}
+
 function bindKeyUp() {
   $(document).keyup(function(event) {
+    resetIdleTimer();
     var element_id = '#key-' + (event.keyCode - 48).toString();
     // add delay
     setTimeout(function(){
@@ -18,6 +27,23 @@ function bindKeyDown() {
       this_press_timestamp = new Date().getTime();
       recordBeat(key_code, last_press_timestamp, this_press_timestamp, color);
       last_press_timestamp = this_press_timestamp;
+    }
+  });
+
+  $(document).keydown(function(event) {
+    if (event.keyCode == 82) {        // r
+      record();
+    } else if (event.keyCode === 80) { // p
+      playTracks(tracks);
+    } else if (event.keyCode === 88) { // x
+      console.log("in the stop keys handler");
+      stopSwitch();
+    } else if (event.keyCode === 85) { // u
+      undo();
+    } else if (event.keyCode === 83) { // s
+      saveTrack();
+    } else if (event.keyCode === 76) { // l
+      $('#loop-track').click();
     }
   });
 };
