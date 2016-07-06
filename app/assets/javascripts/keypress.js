@@ -22,10 +22,14 @@ function bindKeyDown() {
   $(document).keydown(function(event) {
     var key_code = event.keyCode;
     var color = randomColor();
+    var sound = 0;
+    if (differentSounds) { sound = 1; }
+    playKeypress(key_code, color, sound);
+
 
     if (recording) {
       this_press_timestamp = new Date().getTime();
-      recordBeat(key_code, last_press_timestamp, this_press_timestamp, color);
+      recordBeat(key_code, last_press_timestamp, this_press_timestamp, color, sound);
       last_press_timestamp = this_press_timestamp;
     }
   });
