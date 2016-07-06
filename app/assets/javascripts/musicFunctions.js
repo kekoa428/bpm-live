@@ -7,8 +7,8 @@ var sounds = {
   "vox1.wav", "vox2.wav", "vox3.wav", "vox4.wav"],
 
   // .mp3 files
-  mp3_files: ["vox4.mp3", "kick1.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
-  "vox1.mp3", "vox2.mp3", "vox3.mp3", "kick2.mp3"]
+  mp3_files: [ "kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
+  "vox1.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"]
 
 }
 
@@ -16,7 +16,7 @@ var recording = false;
 var looping = false;
 var stop = false;
 var differentSounds = false;
-var soundFiles = sounds.wav_files;
+var soundFiles = sounds.mp3_files;
 
 var this_press_timestamp = null;
 var last_press_timestamp = null;
