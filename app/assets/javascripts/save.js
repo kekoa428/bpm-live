@@ -28,14 +28,10 @@ function saveTrack() {
     console.log("tracks before function. should be undefined b/c haven't recorded anything");
     console.log(tracks);
 
-    // if i click record, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
-
-    // if i click logout, clear all cookies (make sure Cookies.get('guest_track') is undefined after clear)
-
     // if cookie not empty, there is a guest_track. &&..
     // if track is blank, i didn't try recording something else since i logged in.
     if ((typeof Cookies.get('guest_track') !== "undefined") && (tracks.length === 0)){
-      // set tracks = guest_track
+      // set tracks = guest_track cookies
       var cookies = Cookies.get('guest_track');
       tracks = JSON.parse(cookies);
     }
