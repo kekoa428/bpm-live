@@ -81,16 +81,42 @@ function boxChangeBack(id) {
 
 function fadeToBlack(id) {
   var css_selector = '#key-' + id;
-  $(css_selector).animate({ 'backgroundColor': 'black' }, 300);
+  $(css_selector).animate({ backgroundColor: 'black' }, 300);
 }
+
+function fadeToColor(id, color) {
+  var css_selector = '#key-' + id;
+  //fadeInBorder(id);
+  $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ backgroundColor: color, opacity: 1.0 }, 300);
+}
+
+function fadeInBorder(id) {
+  console.log(id);
+  var css_selector = '#key-' + id;
+  //$(css_selector).fadeIn('slow');
+  $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ opacity: 1.0 }, 6000);
+}
+
 
 // Time out for each box?
 function createTimeout(f, dynamicParameter, interval) {
-  setTimeout(function() { f(dynamicParameter); }, interval);
+  var timer;
+  // setTimeout(function() { f(dynamicParameter); }, interval);
+
+    timer = setTimeout(function() { f(dynamicParameter); }, interval);
+  console.log("in the 3 param createTimeout, timer:");
+  console.log(timer);
+  return timer;
 }
 
 function createTimeout(f, firstParam, secondParam, interval) {
-  setTimeout(function() { f(firstParam, secondParam); }, interval);
+  var timer;
+  // setTimeout(function() { f(firstParam, secondParam); }, interval);
+
+    timer = setTimeout(function() { f(firstParam, secondParam); }, interval);
+  console.log("in the 4 param createTimeout, timer:");
+  console.log(timer);
+  return timer;
 }
 
 // Snake through boxes with colors on page load (WIP)

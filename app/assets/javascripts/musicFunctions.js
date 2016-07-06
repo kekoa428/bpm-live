@@ -1,16 +1,23 @@
 var track = [];
 var layer = [];
+var currentSetTimeouts = [];
 
-// .wav files
-var wav_files = ["kick1.wav", "kick2.wav", "perc1.wav", "snare4.wav", "trophies.wav",
-  "vox1.wav", "vox2.wav", "vox3.wav", "vox4.wav"];
-// .mp3 files
-var mp3_files = ["kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
-  "vox1.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"];
+var sounds = {
+  // .wav files
+  wav_files: ["snare4.wav", "kick2.wav", "perc1.wav", "kick1.wav", "trophies.wav",
+  "vox1.wav", "vox2.wav", "vox3.wav", "vox4.wav"],
+
+  // .mp3 files
+  mp3_files: [ "kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
+  "vox1.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"]
+
+}
 
 var recording = false;
 var looping = false;
 var stop = false;
+var differentSounds = false;
+var soundFiles = sounds.mp3_files;
 
 var this_press_timestamp = null;
 var last_press_timestamp = null;
@@ -24,20 +31,21 @@ function playSound(sound_file) {
   if (stop === false) {
     audio.play();
   }
-  // FIXME: Should be a better way to pause this
-  else if (stop === true) {
-    audio.pause();
-    // audio.currentTime = 0;
-    throw "";
-  }
+  // // FIXME: Should be a better way to pause this
+  // else if (stop === true) {
+  //   audio.pause();
+  //   // audio.currentTime = 0;
+  //   throw "";
+  // }
 }
 
 function playKeypress(key_code, color) {
   if (key_code < 49 || key_code > 58) { return; }
-  var sound_file = mp3_files[key_code - 49];
+  console.log(soundFiles);
+  var sound_file = soundFiles[key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
-  createTimeout(boxChangeBack, key_code - 48, 1000000);
+  currentSetTimeouts.push(createTimeout(boxChangeBack, key_code - 48, 1000000));
 }
 
 function playLayer(layer) {
@@ -45,7 +53,7 @@ function playLayer(layer) {
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
     rest += beat.rest;
-    createTimeout(playKeypress, beat.keypress, beat.color, rest);
+    currentSetTimeouts.push(createTimeout(playKeypress, beat.keypress, beat.color, rest));
   }
 }
 
@@ -92,24 +100,32 @@ function undo() {
 }
 
 function stopSwitch() {
-  stop = !stop;
+  looping = false;
+  clearInterval(trackLoop);
+  for(var i = 0; i < currentSetTimeouts.length; i++ ) {
+    clearTimeout(currentSetTimeouts[i]);
+  };
+  currentSetTimeouts = [];
 }
 
 function formatTrack(track) {
   var layerCount = track.layers.length;
   var formattedTrack = [];
-
   for (var i = 0; i < layerCount; i++) {
     beats = track.layers[i].beats;
     formattedTrack[i] = beats;
   }
-
   return formattedTrack;
 }
 
-
-
-
-
-
-
+function switchSounds() {
+  differentSounds = !differentSounds;
+  if (differentSounds === false) {
+    soundFiles = sounds.wav_files;
+    console.log(soundFiles);
+  }
+  else {
+    soundFiles = sounds.mp3_files;
+    console.log(soundFiles);
+  }
+}
