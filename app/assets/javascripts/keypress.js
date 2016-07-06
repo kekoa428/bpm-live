@@ -1,5 +1,14 @@
+var colorSweepTimeout;
+
+function resetIdleTimer() {
+  clearInterval(colorSweepTimeout);
+  //colorSweep(colorSwatch[i]);
+  colorSweepTimeout = setInterval(colorSweep, 10000, randomColorSwatch());
+}
+
 function bindKeyUp() {
   $(document).keyup(function(event) {
+    resetIdleTimer();
     var element_id = '#key-' + (event.keyCode - 48).toString();
     // add delay
     setTimeout(function(){
