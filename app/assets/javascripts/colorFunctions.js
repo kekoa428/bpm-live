@@ -88,21 +88,14 @@ function fadeToColor(id, color) {
 }
 
 function fadeInBorder(id) {
-  console.log(id);
   var css_selector = '#key-' + id;
   //$(css_selector).fadeIn('slow');
   $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ opacity: 1.0 }, 6000);
 }
 
-
-
-function createTimeout(f, firstParam, secondParam, interval) {
+function createTimeout(f, firstParam, secondParam, thirdParam, interval) {
   var timer;
-  // setTimeout(function() { f(firstParam, secondParam); }, interval);
-
-    timer = setTimeout(function() { f(firstParam, secondParam); }, interval);
-  console.log("in the 4 param createTimeout, timer:");
-  console.log(timer);
+  timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
   return timer;
 }
 
