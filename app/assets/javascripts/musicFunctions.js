@@ -123,6 +123,14 @@ function switchSounds() {
   if (differentSounds) { sound = 1; }
 }
 
+function soundSwitch() {
+  if (differentSounds) {
+    return 1;
+   } else {
+     return 0;
+   }
+};
+
 //   if (differentSounds === false) {
 //     soundFiles = sounds.wav_files;
 //     console.log(soundFiles);
