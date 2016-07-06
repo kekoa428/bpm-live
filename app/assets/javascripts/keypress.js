@@ -25,7 +25,7 @@ function bindKeyDown() {
 
     if (recording) {
       this_press_timestamp = new Date().getTime();
-      recordBeat(key_code, last_press_timestamp, this_press_timestamp, color, sound);
+      recordBeat(key_code, last_press_timestamp, this_press_timestamp, color, soundSwitch());
       last_press_timestamp = this_press_timestamp;
     }
   });
