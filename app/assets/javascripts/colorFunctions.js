@@ -54,7 +54,7 @@ function showColor(id, color) {
   	});
   }, 100 );
 
-  $('#key-' + id.toString()).effect('shake', { direction: "left", distance: 5, times: 5 } ).css('background-color', color);
+  $('#key-' + id.toString()).effect('shake', { direction: "left", distance: 2, times: 7 } ).css('background-color', color);
 }
 
 // Random color generator
