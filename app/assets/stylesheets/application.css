@@ -161,10 +161,6 @@ nav p {
   overflow: hidden;
 }
 
-body h1, h2, h3, h4, p, th, td, li {
-  color: white;
-}
-
 .save-popup {
   z-index: 100;
   display: none;
@@ -230,4 +226,7 @@ body h1, h2, h3, h4, p, th, td, li {
 
 #outer-div {
   margin-top: -25px;
+
+body h1, h2, h3, h4, p, th, td, li, label {
+  color: white;
 }
