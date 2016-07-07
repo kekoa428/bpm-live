@@ -6,7 +6,7 @@
     <% @tracks.each do |track| %>
     <div class="single-recording">
         <h2><%= (track.name != nil) ? "#{track.name.capitalize}" : "- no name" %></h2>
-        <p><%= link_to image_tag("play.png", size: "35"), root_path, remote: true, class: 'play-track-from-user-profile', :id => track.id %></p>
+        <%= link_to image_tag("play.png", size: "150"), root_path, remote: true, class: 'play-track-from-user-profile', :id => track.id %>
 
       </div>
     <% end %>
