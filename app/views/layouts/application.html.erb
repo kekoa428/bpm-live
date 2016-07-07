@@ -18,7 +18,7 @@
         <p>Logged in as <%= current_user.email %></p>
         <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-right', :onclick => 'clearCookies()'  %>
         <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-right' %>
-        <%= link_to 'My Tracks', user_path( current_user.id ), :class => 'nav-right' %>
+        <%= link_to 'My Tracks', user_path( current_user.id ), :id => 'my-tracks-button', :class => 'nav-right' %>
         <%= link_to 'Create Room', rooms_path, method: :post, :class => 'nav-right' %>
       <% else %>
         <%= link_to "Sign up", new_user_registration_path, :id => 'signup', :class => 'nav-right'  %>

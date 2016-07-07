@@ -1,13 +1,12 @@
 <h1 class="text-center" id="my-sounds">My Sounds (<%= current_user.email %>)</h1>
 
 <div id="recordings-wrapper">
-    <% @tracks.each do |track| %>
+    <% @tracks.each_with_index do |track, index| %>
     <div class="single-recording">
-        <h2><%= (track.name != nil) ? "#{track.name.capitalize}" : "- no name" %></h2>
+        <h2><%= (track.name == "") ? "Track ##{index + 1}" : "#{track.name.capitalize}" %></h2>
         <%= link_to image_tag("play.png", size: "150"), root_path, remote: true, class: 'play-track-from-user-profile', :id => track.id %>
 
       </div>
     <% end %>
 </div>
-
 <!-- play button has id so when click play, JS knows which track to play -->
