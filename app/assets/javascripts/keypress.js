@@ -17,8 +17,10 @@ function bindKeyUp() {
   })
 };
 
+
 function bindKeyDown() {
   // this binding will allow for color change and sound play
+
   $(document).keydown(function(event) {
     var key_code = event.keyCode;
     var color = randomColor();
@@ -46,8 +48,6 @@ function bindKeyDown() {
       $('#loop-track').click();
     }
   });
-
-
 };
 
 // will unbind keys on specific event handler
@@ -65,4 +65,64 @@ function rebindKeys(){
   $(document).bind('keydown', bindKeyDown);
   bindKeyUp();
   bindKeyDown();
+}
+
+function bindClickEvents(){
+  var color = randomColor();
+
+  $("#key-1").on('click',function(e){
+    e.preventDefault();
+    var key_code = 49;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-2").on('click',function(e){
+    e.preventDefault();
+    var key_code = 50;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-3").on('click',function(e){
+    e.preventDefault();
+    var key_code = 51;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-4").on('click',function(e){
+    e.preventDefault();
+    var key_code = 52;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-5").on('click',function(e){
+    e.preventDefault();
+    var key_code = 53;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-6").on('click',function(e){
+    e.preventDefault();
+    var key_code = 54;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-7").on('click',function(e){
+    e.preventDefault();
+    var key_code = 55;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-8").on('click',function(e){
+    e.preventDefault();
+    var key_code = 56;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
+  $("#key-9").on('click',function(e){
+    e.preventDefault();
+    console.log("key-7");
+    var key_code = 57;
+
+    playKeypress(key_code, color, soundSwitch());
+  });
 }
