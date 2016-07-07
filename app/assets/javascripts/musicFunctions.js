@@ -1,5 +1,6 @@
 var track = [];
 var layer = [];
+var trackLoop = [];
 var currentSetTimeouts = [];
 
 var sounds = {
