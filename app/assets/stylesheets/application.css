@@ -40,7 +40,8 @@ nav {
 
 .nav-center {
   text-align: center;
-  padding-left: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .nav-right {

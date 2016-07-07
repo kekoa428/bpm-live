@@ -64,23 +64,29 @@ $(document).ready(function() {
     setTimeout(fadeToBlack, i*200 + 300, div[i]);
   });
 
-  // $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").each(function(i) {
-  //
-  //   $('#key-' + id).css('background-color', 'black');
-  // });
-
-  // for (var i = 0; i < div.length; i++){
-  //   $('#key-' + div[i]).css('background-color', 'black').fadeOut(200);
-  // };
   resetIdleTimer();
 
   // bind keypress functions
   bindKeyUp();
   bindKeyDown();
 
-
   // for overlay of keypress instructions
   displayIntructions();
+
+  // $("#key-7").on('click',function(e){
+  //   e.preventDefault();
+  //   console.log("key-7");
+  //   var key_code = 55;
+  //   var color = randomColor();
+  //   var sound = soundSwitch();
+  //
+  //   if (key_code < 49 || key_code > 58) { return; }
+  //   var sound_file = soundFiles[sound][key_code - 49];
+  //   playSound(sound_file);
+  //   showColor(key_code - 48, color);
+  //   currentSetTimeouts.push(createTimeoutThree(boxChangeBack, key_code - 48, 300));
+  // });
+  bindClickEvents();
 
   // $('.home-link').on('click', function(e){
   $(document).on('click', '.home-link', function(e){
@@ -109,7 +115,6 @@ $(document).ready(function() {
   $('#stop-track').click(function(event) {
     event.preventDefault();
     stopSwitch();
-    console.log(stop);
   })
 
 
@@ -117,12 +122,10 @@ $(document).ready(function() {
   $('#undo').click(function(event) {
     event.preventDefault();
     undo();
-    console.log('Removed the last layer')
   })
 
   $('#switch_sounds').click(function(event) {
     event.preventDefault();
-    console.log('Switched the sounds');
     switchSounds();
   })
 
@@ -148,9 +151,11 @@ $(document).ready(function() {
   // Loops tracks
   $('#loop-track').click(function(event) {
     event.preventDefault();
-    var oldInterval = interval;
+    oldInterval = interval;
+    console.log(oldInterval, "oldInterval");
 
     if (looping) {
+      console.log(interval, "stopping loop");
       looping = false;
       clearInterval(trackLoop);
       console.log("Looping Stopped")
@@ -158,10 +163,12 @@ $(document).ready(function() {
     else {
       interval = oldInterval;
       looping = true;
+      console.log(interval, "starting loop");
       console.log("Looping Started")
       playTrack(track);
       trackLoop = setInterval(function() {
         playTrack(track);
+        console.log(track);
       }, interval)
     }
   });
