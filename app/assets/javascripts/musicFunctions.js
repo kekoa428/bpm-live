@@ -59,9 +59,10 @@ function playLayer(layer) {
 }
 
 function playTrack(track) {
+  newInterval();
   if (looping === false) {
-    $('#play-track').css('color', 'green');
-    setTimeout(function() {  $('#play-track').css('color', 'white'); }, interval)
+    $('#play-track').css('color', 'LimeGreen');
+    setTimeout(function() {  $('#play-track').css('color', 'white'); }, interval);
   }
   else {
     loopingColor();
@@ -80,7 +81,6 @@ function recordBeat(key_code, last_press_timestamp, this_press_timestamp, color,
     sound: sound
   }
   layer.push(beat);
-  interval += beat.rest;
 }
 
 function record() {
@@ -100,6 +100,11 @@ function record() {
   }
 }
 
+function newInterval() {
+  var arrayOfRests = findLayerRests(track);
+  interval = findLongestLayer(arrayOfRests);
+}
+
 function playAndRecord(track) {
   playTrack(track);
   record();
@@ -107,7 +112,7 @@ function playAndRecord(track) {
 
 function undo() {
   track.pop();
-  $('#undo').css('color', 'blue');
+  $('#undo').css('color', 'cyan');
   setTimeout(function() { $('#undo').css('color', 'white'); }, 400)
   console.log('Removed the last layer')
 }
@@ -144,13 +149,13 @@ function switchSounds() {
   if (differentSounds) {
     sound = 1;
     $('#switch_sounds').text('Synth');
-     $('#switch_sounds').css('color', 'pink');
-    setTimeout(function() { $('#switch_sounds').css('color', 'white'); }, 400)
+     $('#switch_sounds').css('color', 'HotPink');
+    setTimeout(function() { $('#switch_sounds').css('color', 'white'); }, 500);
   }
   else {
     $('#switch_sounds').text('Drums');
-     $('#switch_sounds').css('color', 'pink');
-    setTimeout(function() { $('#switch_sounds').css('color', 'white'); }, 400)
+     $('#switch_sounds').css('color', 'HotPink');
+    setTimeout(function() { $('#switch_sounds').css('color', 'white'); }, 500);
   }
 }
 
@@ -161,3 +166,36 @@ function soundSwitch() {
      return 0;
    }
 };
+function loopingColor() {
+  if (looping) {
+    $('#loop-track').css('color', 'yellow');
+    $('#play-track').css('color', 'LimeGreen');
+  }
+  else {
+    $('#loop-track').css('color', 'white');
+    $('#play-track').css('color', 'white');
+  }
+}
+
+function layerRestLength(layer) {
+  var rest = 0;
+  for (var i = 0; i < layer.length; i++) {
+    var beat = layer[i];
+    rest += beat.rest;
+  }
+  return rest;
+}
+
+function findLayerRests(track) {
+  var layerLengths = []
+  track.forEach(function(layer) {
+    layerLengths.push(layerRestLength(layer));
+  });
+  return layerLengths;
+}
+
+function findLongestLayer(array) {
+  array.sort(function(a, b) { b - a; } )
+  return array[0];
+}
+

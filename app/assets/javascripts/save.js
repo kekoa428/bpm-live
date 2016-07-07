@@ -26,7 +26,7 @@ function saveTrack() {
   $("#save").click(function(e) {
     e.preventDefault();
     $(this).css('color', 'gray');
-      setTimeout(function() { $(this).css('color', 'white'); }, 400);
+      setTimeout(function() { $('#save').css('color', 'white'); }, 200);
     console.log("track before function. should be undefined b/c haven't recorded anything");
     console.log(track);
 

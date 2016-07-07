@@ -1,15 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
+
 //= require colors
 //= require jquery2
 //= require jquery_ujs
@@ -73,19 +62,6 @@ $(document).ready(function() {
   // for overlay of keypress instructions
   displayIntructions();
 
-  // $("#key-7").on('click',function(e){
-  //   e.preventDefault();
-  //   console.log("key-7");
-  //   var key_code = 55;
-  //   var color = randomColor();
-  //   var sound = soundSwitch();
-  //
-  //   if (key_code < 49 || key_code > 58) { return; }
-  //   var sound_file = soundFiles[sound][key_code - 49];
-  //   playSound(sound_file);
-  //   showColor(key_code - 48, color);
-  //   currentSetTimeouts.push(createTimeoutThree(boxChangeBack, key_code - 48, 300));
-  // });
   bindClickEvents();
 
   // $('.home-link').on('click', function(e){
@@ -117,7 +93,6 @@ $(document).ready(function() {
     stopSwitch();
   })
 
-
   // Removes last track recorded
   $('#undo').click(function(event) {
     event.preventDefault();
@@ -126,7 +101,6 @@ $(document).ready(function() {
 
   $('#switch_sounds').click(function(event) {
     event.preventDefault();
-
     switchSounds();
   })
 
@@ -149,12 +123,13 @@ $(document).ready(function() {
       })
   })
 
+
   // Loops tracks
   $('#loop-track').click(function(event) {
     event.preventDefault();
-    oldInterval = interval;
-    console.log(oldInterval, "oldInterval");
-
+    // oldInterval = interval;
+    console.log(interval);
+    // console.log(oldInterval, "oldInterval");
     if (looping) {
       console.log(interval, "stopping loop");
       looping = false;
@@ -163,29 +138,27 @@ $(document).ready(function() {
       console.log("Looping Stopped")
     }
     else {
-      interval = oldInterval;
+      // interval = oldInterval;
       looping = true;
       loopingColor();
       console.log(interval, "starting loop");
       console.log("Looping Started")
       playTrack(track);
       trackLoop = setInterval(function() {
+        newInterval();
         playTrack(track);
         console.log(track);
       }, interval)
     }
   });
 
+
+  $('.nav-right').on('click', function() {
+    $(this).css('color', 'gray');
+      setTimeout(function() { $('.nav-right').css('color', 'white'); }, 50);
+  })
+
 });
 
 
-function loopingColor() {
-  if (looping) {
-    $('#loop-track').css('color', 'yellow');
-    $('#play-track').css('color', 'green');
-  }
-  else {
-    $('#loop-track').css('color', 'white');
-    $('#play-track').css('color', 'white');
-  }
-}
+
