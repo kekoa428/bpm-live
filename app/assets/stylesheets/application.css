@@ -244,6 +244,12 @@ body p, h1, h2, h3, h4, th, td, li, label {
   color: black;
 }
 
+button #my_popup {
+  font-family: 'Oswald', sans-serif;
+  font-size: .9em;
+  /*border-radius: 4;*/
+}
+
 .outer-div {
   margin-top: -25px;
 }
@@ -284,8 +290,4 @@ body p, h1, h2, h3, h4, th, td, li, label {
 
 .text-center {
   text-align: center;
-}
-
-#my-sounds {
-  margin-top: 2em;
 }

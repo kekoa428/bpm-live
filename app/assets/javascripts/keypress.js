@@ -33,18 +33,17 @@ function bindKeyDown() {
   });
 
   $(document).keydown(function(event) {
-    if (event.keyCode == 82) {        // r
-      record();
-    } else if (event.keyCode === 80) { // p
-      playTrack(track);
-    } else if (event.keyCode === 88) { // x
-      console.log("in the stop keys handler");
+    if (event.keyCode == 82) {        // r = record
+      $('#record').click();
+    } else if (event.keyCode === 80) { // p - play
+      $('#play-track').click();
+    } else if (event.keyCode === 88) { // x - stop
       stopSwitch();
-    } else if (event.keyCode === 85) { // u
+    } else if (event.keyCode === 85) { // u - undo
       undo();
-    } else if (event.keyCode === 83) { // s
-      saveTrack();
-    } else if (event.keyCode === 76) { // l
+    } else if (event.keyCode === 83) { // s - switch
+      switchSounds();
+    } else if (event.keyCode === 76) { // l - loop
       $('#loop-track').click();
     }
   });

@@ -1,3 +1,4 @@
+//= require 'keypress'
 // when guest clicks save
 function guestSave() {
   $("#save-guest-button").click(function(e) {
@@ -25,6 +26,7 @@ function clearCookies() {
 function saveTrack() {
   $("#save").click(function(e) {
     e.preventDefault();
+      console.log("i am in save and clicked");
     $(this).css('color', 'gray');
       setTimeout(function() { $('#save').css('color', 'white'); }, 200);
     console.log("track before function. should be undefined b/c haven't recorded anything");
