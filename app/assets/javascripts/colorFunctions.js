@@ -92,19 +92,19 @@ function fadeInBorder(id) {
   //$(css_selector).fadeIn('slow');
   $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ opacity: 1.0 }, 6000);
 }
-
-function createTimeout(f, firstParam, secondParam, thirdParam, interval) {
-  var timer;
-  timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
-  return timer;
-}
 // Time out for each box?
-function createTimeout(f, dynamicParameter, interval) {
+function createTimeoutThree(f, dynamicParameter, interval) {
   var timer;
   // setTimeout(function() { f(dynamicParameter); }, interval);
 
   timer = setTimeout(function() { f(dynamicParameter); }, interval);
   console.log("in the 3 param createTimeout, timer:");
   console.log(timer);
+  return timer;
+}
+
+function createTimeoutFive(f, firstParam, secondParam, thirdParam, interval) {
+  var timer;
+  timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
   return timer;
 }

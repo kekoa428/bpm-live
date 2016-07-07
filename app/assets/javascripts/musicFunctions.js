@@ -43,7 +43,7 @@ function playKeypress(key_code, color, sound) {
   var sound_file = soundFiles[sound][key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
-  currentSetTimeouts.push(createTimeout(boxChangeBack, key_code - 48, 300));
+  currentSetTimeouts.push(createTimeoutThree(boxChangeBack, key_code - 48, 300));
 }
 
 function playLayer(layer) {
@@ -51,7 +51,7 @@ function playLayer(layer) {
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
     rest += beat.rest;
-    currentSetTimeouts.push(createTimeout(playKeypress, beat.keypress, beat.color, beat.sound, rest));
+    currentSetTimeouts.push(createTimeoutFive(playKeypress, beat.keypress, beat.color, beat.sound, rest));
   }
 }
 
