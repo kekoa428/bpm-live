@@ -2,9 +2,8 @@ function showColor(id, color) {
   var square = $('#key-'+ id.toString());
   var square_limit = square;
 
-  // var x_coord = square_offset.left;
+
   var x_coord = square.width()/2;
-  // var y_coord = square_offset.top;
   var y_coord = square.height()/2;
 
   // this will create the ripple wrap
@@ -14,8 +13,8 @@ function showColor(id, color) {
     'width' 		: square.width(),
     'height'		: square.height(),
     'position' 		: 'relative',
-    'top'			: y_coord/4,
-    'left'	 		: x_coord/4,
+    'top'			: y_coord * 1.6,
+    'left'	 		: x_coord,
     'z-index' 		: 0,
     'overflow' 		: 'hidden',
     'background-clip': 'padding-box'
@@ -32,8 +31,8 @@ function showColor(id, color) {
   	'height'			: circular_width,
   	'background'			: color, //'rgba(0,0,0,0.3)',
   	'position'			: 'absolute',
-  	'top'				: y_coord - ( circular_width /2 ),
-  	'left'				: x_coord - ( circular_width /2 ),
+  	'top'				: y_coord - ( circular_width ),
+  	'left'				: x_coord - ( circular_width ),
   	'content'			: '',
   	'background-clip' 		: 'padding-box',
   	'-webkit-border-radius'     	: '50%',

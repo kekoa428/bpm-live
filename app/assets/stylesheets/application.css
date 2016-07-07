@@ -217,6 +217,10 @@ nav p {
   border-radius: .5em;
 }
 
+body h1, h2, h3, h4, p, th, td, li, label {
+  color: white;
+}
+
 #my_popup ul {
   margin-left: -20px;
 }
@@ -231,8 +235,4 @@ nav p {
 
 #outer-div {
   margin-top: -25px;
-}
-
-body h1, h2, h3, h4, p, th, td, li, label {
-  color: white;
 }

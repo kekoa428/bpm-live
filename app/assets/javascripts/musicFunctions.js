@@ -1,5 +1,7 @@
 var track = [];
 var layer = [];
+var trackLoop = [];
+
 var currentSetTimeouts = [];
 
 var sounds = {
@@ -44,7 +46,7 @@ function playKeypress(key_code, color, sound) {
   var sound_file = soundFiles[sound][key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
-  currentSetTimeouts.push(createTimeoutThree(boxChangeBack, key_code - 48, 1000));
+  currentSetTimeouts.push(createTimeoutThree(boxChangeBack, key_code - 48, 300));
 }
 
 function playLayer(layer) {
@@ -126,3 +128,23 @@ function switchSounds() {
   if (differentSounds) { sound = 1; }
 }
 
+<<<<<<< HEAD
+=======
+function soundSwitch() {
+  if (differentSounds) {
+    return 1;
+   } else {
+     return 0;
+   }
+};
+
+//   if (differentSounds === false) {
+//     soundFiles = sounds.wav_files;
+//     console.log(soundFiles);
+//   }
+//   else {
+//     soundFiles = sounds.mp3_files;
+//     console.log(soundFiles);
+//   }
+// }
+>>>>>>> c87f1b3a42c009d0fc31fbb2436ad57b075627da
