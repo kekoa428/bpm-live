@@ -5,19 +5,19 @@ var currentSetTimeouts = [];
 
 var sounds = {
   // .wav files
-  wav_files: ["Daft Punk - C4.wav", "Daft Punk - C5.wav", "Daft Punk - C6.wav", "RIF1(LD0.WAV", "RIF2(LD0.WAV",
-  "RIF3(LD0.WAV", "OPEN-HIZ.WAV", "CUT-KIK(.WAV", "KICKASS(.WAV"],
+  second_kit: ["Daft Punk - C4.mp3", "Daft Punk - C5.mp3", "Daft Punk - C6.mp3", "RIF1(LD0.WAV", "RIF2(LD0.mp3",
+  "RIF3(LD0.mp3", "OPEN-HIZ.mp3", "CUT-KIK(.mp3", "KICKASS(.mp3"],
 
   // .mp3 files
-  mp3_files: [ "kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "OPEN-HIZ.WAV",
-  "OPEN-RAS.WAV", "vox2.mp3", "vox3.mp3", "vox4.mp3"]
+  first_kit: [ "kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "OPEN-HIZ.mp3",
+  "OPEN-RAS.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"]
 
 }
 var recording = false;
 var looping = false;
 var stop = false;
 var differentSounds = false;
-var soundFiles = [ sounds.mp3_files, sounds.wav_files ]
+var soundFiles = [ sounds.first_kit, sounds.second_kit ]
 
 var this_press_timestamp = null;
 var last_press_timestamp = null;
@@ -132,11 +132,11 @@ function soundSwitch() {
 };
 
 //   if (differentSounds === false) {
-//     soundFiles = sounds.wav_files;
+//     soundFiles = sounds.second_kit;
 //     console.log(soundFiles);
 //   }
 //   else {
-//     soundFiles = sounds.mp3_files;
+//     soundFiles = sounds.first_kit;
 //     console.log(soundFiles);
 //   }
 // }
