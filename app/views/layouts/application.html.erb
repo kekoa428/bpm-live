@@ -16,11 +16,10 @@
       <button class="my_popup_open">Instructions</button>
       <% if user_signed_in? %>
         <p>Logged in as <%= current_user.email %></p>
-        <p><%= link_to 'View my tracks', user_path( current_user.id ) %></p>
-        <p><%= link_to 'Create Room', rooms_path, method: :post %></p>
-        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-right' %> |
         <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-right', :onclick => 'clearCookies()'  %>
-        <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-right' %>
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-right' %> |
+        <%= link_to 'My Tracks', user_path( current_user.id ), :class => 'nav-right' %>
+        <%= link_to 'Create Room', rooms_path, method: :post, :class => 'nav-right' %>
       <% else %>
         <%= link_to "Sign up", new_user_registration_path, :id => 'signup', :class => 'nav-right'  %> |
         <%= link_to "Login", new_user_session_path, :id => 'login', :class => 'nav-right'  %>
@@ -31,10 +30,11 @@
     <nav class="music-functions">
       <%= link_to 'Play', root_path, remote: true, id: 'play-track', :class => 'nav-center' %>
       <%= link_to 'Stop', root_path, id: 'stop-track', :class => 'nav-center' %>
-      <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-center' %>
       <%= link_to 'Record', root_path, id: 'record', :class => 'nav-center' %>
+      <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-center' %>
       <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-center' %>
       <%= link_to 'Switch', root_path, id: 'switch_sounds', :class => 'nav-center' %>
+      <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-center' %>
     </nav>
 
     <div id="my_popup">

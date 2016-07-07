@@ -22,14 +22,10 @@ function bindKeyDown() {
   $(document).keydown(function(event) {
     var key_code = event.keyCode;
     var color = randomColor();
-    var sound = 0;
-    if (differentSounds) { sound = 1; }
-    playKeypress(key_code, color, sound);
-
 
     if (recording) {
       this_press_timestamp = new Date().getTime();
-      recordBeat(key_code, last_press_timestamp, this_press_timestamp, color, sound);
+      recordBeat(key_code, last_press_timestamp, this_press_timestamp, color, soundSwitch());
       last_press_timestamp = this_press_timestamp;
     }
   });
@@ -38,7 +34,7 @@ function bindKeyDown() {
     if (event.keyCode == 82) {        // r
       record();
     } else if (event.keyCode === 80) { // p
-      playTracks(tracks);
+      playTrack(track);
     } else if (event.keyCode === 88) { // x
       console.log("in the stop keys handler");
       stopSwitch();
@@ -50,6 +46,8 @@ function bindKeyDown() {
       $('#loop-track').click();
     }
   });
+
+
 };
 
 // will unbind keys on specific event handler

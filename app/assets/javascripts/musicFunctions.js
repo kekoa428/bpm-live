@@ -39,7 +39,6 @@ function playSound(sound_file) {
   // }
 }
 
-
 function playKeypress(key_code, color, sound) {
   if (key_code < 49 || key_code > 58) { return; }
   var sound_file = soundFiles[sound][key_code - 49];
@@ -53,7 +52,7 @@ function playLayer(layer) {
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
     rest += beat.rest;
-    currentSetTimeouts.push(createTimeoutFour(playKeypress, beat.keypress, beat.color, beat.sound, rest));
+    currentSetTimeouts.push(createTimeoutFive(playKeypress, beat.keypress, beat.color, beat.sound, rest));
   }
 }
 
