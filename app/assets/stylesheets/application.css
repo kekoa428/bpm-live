@@ -1,15 +1,285 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+#home-enter-button {
+  position: absolute;
+  top: 50%;
+}
+
+#enter-page {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+
+th {
+  text-align: left;
+}
+
+body {
+  padding: 10px 200px;
+  background-color: black !important;
+  z-index: 100;
+  font-family: 'Oswald', sans-serif;
+}
+
+nav {
+  padding-bottom: 10px;
+}
+
+.music-functions {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  height: 1.5em;
+  padding-bottom: 0;
+}
+
+.nav-center {
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.nav-right {
+  float: right;
+  padding-right: 10px;
+}
+
+.grid {
+  width: 780px;
+  height: 780px;
+  margin: 0 auto;
+  margin-top: 50px;
+  overflow: hidden;
+  /*border: 5px solid white;
+  border-radius 10px;
+  background-color: white;*/
+}
+
+#key-1, #key-2, #key-3, #key-4, #key-5, #key-6, #key-7, #key-8, #key-9 {
+  /*border-style: solid;
+  border-color: white;*/
+  border: 5px solid white;
+  margin: 8px;
+  height: 230px;
+  width: 230px;
+  /*height: 240px;
+  width: 240px;*/
+
+  float: left;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 230px;
+  font-size: 500%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+#logout {
+  background: none;
+  color: white;
+  padding: 0;
+  border: none;
+}
+
+/* Position the close button (top right corner) */
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px !important; /* Override the font-size specified earlier (36px) for all navigation links */
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .closebtn {
+        font-size: 40px !important;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+/*navbar*/
+nav p {
+  color: white;
+  display: inline;
+  position: relative;
+  left: 30px;
+  margin-right: 20px;
+}
+
+/*signup form*/
+
+.devise-form-wrapper {
+  margin: 0 auto;
+  width: 250px;
+  color: white;
+}
+
+.new_user {
+  margin: 0 auto;
+  width: 250px;
+}
+
+.devise-form-wrapper .inline {
+  display: inline;
+}
+
+
+
+
+/* Ripple effect */
+@-webkit-keyframes ripple-animation {
+  0% {
+    -webkit-transform: scale(.01);
+            transform: scale(.01);
+  }
+
+  100% {
+    -webkit-transform: scale(5);
+            transform: scale(5);
+  }
+}
+
+@keyframes ripple-animation {
+  0% {
+    -webkit-transform: scale(.01);
+            transform: scale(.01);
+  }
+
+  100% {
+    -webkit-transform: scale(5);
+            transform: scale(5);
+  }
+}
+
+.title {
+  overflow: hidden;
+}
+
+.save-popup {
+  z-index: 100;
+  display: none;
+  float: right;
+  height: 40px;
+  width: 140px;
+  background-color: black;
+  text-align: center;
+  position: absolute;
+  color: #ccc;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px white;
+  margin: 25px;
+  min-height: 50px;
+  border: 1px solid #333;
+  text-shadow: 0 0 1px #000;
+  /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
+  right: 160px;
+  top: 40px;
+}
+
+.save-popup::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  border: 0.8em solid transparent;
+  position: absolute;
+
+  left: 45%;
+  top: -30px;
+  border-bottom: 10px solid white;
+}
+
+
+#my_popup {
+  transform: scale(0.8);
+}
+
+.my_popup_open {
+  margin-left: 2px;
+}
+
+.popup_visible #my_popup {
+  transform: scale(1);
+  background-color: white;
+  line-height: 1;
+  padding: 1em 1.5em 1em 1.5em;
+  border-radius: .5em;
+}
+
+#my_popup ul {
+  margin-left: -20px;
+}
+
+#my_popup ul li{
+  margin: 5px 0;
+}
+
+body p, h1, h2, h3, h4, th, td, li, label {
+  color: white;
+}
+
+#user-tracks ul li {
+  color: white;
+}
+
+#my_popup h2, p, li {
+  color: black;
+}
+
+.outer-div {
+  margin-top: -25px;
+}
+
+.single-recording {
+  width: 125px;
+  height: 125px;
+  background-color: #DEDEDE;
+  border-radius: 5em;
+  float: left;
+  margin: 15px;
+  padding: 15px;
+
+}
+
+.single-recording h2 {
+  color: black;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  top: 20%;
+  text-align: center;
+}
+
+.single-recording img {
+  z-index: 10;
+  opacity: 0.1;
+  position: relative;
+  bottom: 5.5em;
+  right: .8em;
+}
+
+#recordings-wrapper {
+  margin: 40px auto;
+  width: 80%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#my-sounds {
+  margin-top: 2em;
+}
+

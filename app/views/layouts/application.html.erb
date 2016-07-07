@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BpmLive</title>
+    <title>BPM Live</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
+
+    <nav>
+      <a class="home-link" href="/">BPM Live</a>
+      <button class="my_popup_open">Instructions</button>
+      <% if user_signed_in? %>
+        <p>Logged in as <%= current_user.email %></p>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-right', :onclick => 'clearCookies()'  %>
+        <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-right' %>
+        <%= link_to 'My Tracks', user_path( current_user.id ), :class => 'nav-right' %>
+        <%= link_to 'Create Room', rooms_path, method: :post, :class => 'nav-right' %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, :id => 'signup', :class => 'nav-right'  %>
+        <%= link_to "Login", new_user_session_path, :id => 'login', :class => 'nav-right'  %>
+      <% end %>
+    </nav>
+
+    <div id="my_popup">
+      <h2>INSTRUCTIONS:</h2>
+        <ul>
+          <li>USE THE KEYS 1-9 TO PLAY SOUNDS</li>
+          <li>PLAY/STOP - "SPACE"</li>
+          <li>RECORD - "R"</li>
+          <li>UNDO - "U"</li>
+          <li>SAVE - "S"</li>
+          <li>LOOP - "L"</li>
+        </ul>
+    </div>
+    <!-- popup when guest clicks 'save' -->
+    <div class="save-popup">You must be signed in to save tracks.</div>
+
+    <!-- login -->
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
+
+    <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
   </body>
 </html>

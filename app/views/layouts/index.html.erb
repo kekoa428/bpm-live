@@ -1,0 +1,27 @@
+<nav class="music-functions">
+  <%= link_to 'Play', root_path, remote: true, id: 'play-track', :class => 'nav-center' %>
+  <%= link_to 'Stop', root_path, id: 'stop-track', :class => 'nav-center' %>
+  <%= link_to 'Record', root_path, id: 'record', :class => 'nav-center' %>
+  <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-center' %>
+  <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-center' %>
+  <%= link_to 'Drums', root_path, id: 'switch_sounds', :class => 'nav-center' %>
+  <% if user_signed_in? %>
+    <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-center' %>
+  <% else %>
+    <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-center' %>
+  <% end %>
+</nav>
+
+<div class='outer-div' style="overflow-x:auto">
+  <div class="grid">
+    <a href="#"><div id="key-7">7</div></a>
+    <a href="#"><div id="key-8">8</div></a>
+    <a href="#"><div id="key-9">9</div></a>
+    <a href="#"><div id="key-4">4</div></a>
+    <a href="#"><div id="key-5">5</div></a>
+    <a href="#"><div id="key-6">6</div></a>
+    <a href="#"><div id="key-1">1</div></a>
+    <a href="#"><div id="key-2">2</div></a>
+    <a href="#"><div id="key-3">3</div></a>
+  </div>
+</div>
