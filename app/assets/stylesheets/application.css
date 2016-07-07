@@ -71,6 +71,10 @@ nav {
 
   float: left;
   border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 230px;
+  font-size: 500%;
 }
 
 a {
@@ -226,6 +230,7 @@ nav p {
 
 #outer-div {
   margin-top: -25px;
+}
 
 body h1, h2, h3, h4, p, th, td, li, label {
   color: white;
