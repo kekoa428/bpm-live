@@ -61,14 +61,10 @@ nav {
 }
 
 #key-1, #key-2, #key-3, #key-4, #key-5, #key-6, #key-7, #key-8, #key-9 {
-  /*border-style: solid;
-  border-color: white;*/
   border: 5px solid white;
   margin: 8px;
   height: 230px;
   width: 230px;
-  /*height: 240px;
-  width: 240px;*/
 
   float: left;
   border-radius: 10px;
@@ -81,6 +77,10 @@ nav {
 a {
   color: white;
   text-decoration: none;
+}
+
+.main-nums {
+  color: black;
 }
 
 #logout {
@@ -207,6 +207,13 @@ nav p {
 
 .my_popup_open {
   margin-left: 2px;
+  color: white;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: 'Oswald';
+  font-size: 16px;
+  padding-left: 10px;
 }
 
 .popup_visible #my_popup {
@@ -282,4 +289,3 @@ body p, h1, h2, h3, h4, th, td, li, label {
 #my-sounds {
   margin-top: 2em;
 }
-
