@@ -233,6 +233,6 @@ body h1, h2, h3, h4, p, th, td, li, label {
   color: black;
 }
 
-#outer-div {
+.outer-div {
   margin-top: -25px;
 }

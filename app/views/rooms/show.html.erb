@@ -1,4 +1,18 @@
-<div style="overflow-x:auto">
+<nav class="music-functions">
+  <%= link_to 'Play', root_path, remote: true, id: 'play-track', :class => 'nav-center' %>
+  <%= link_to 'Stop', root_path, id: 'stop-track', :class => 'nav-center' %>
+  <%= link_to 'Record', root_path, id: 'record', :class => 'nav-center' %>
+  <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-center' %>
+  <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-center' %>
+  <%= link_to 'Drums', root_path, id: 'switch_sounds', :class => 'nav-center' %>
+  <% if user_signed_in? %>
+    <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-center' %>
+  <% else %>
+    <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-center' %>
+  <% end %>
+</nav>
+
+<div class='outer-div' style="overflow-x:auto">
   <div id='main-grid' class="grid" data-channel="rooms" data-room-id="<%= @room.id %>">
     <div id="key-7">7</div>
     <div id="key-8">8</div>

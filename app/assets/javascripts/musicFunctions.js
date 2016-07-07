@@ -59,7 +59,15 @@ function playLayer(layer) {
 }
 
 function playTrack(track) {
-  for (var i = 0; i < track.length; i++) {
+  if (looping === false) {
+    $('#play-track').css('color', 'green');
+    setTimeout(function() {  $('#play-track').css('color', 'white'); }, interval)
+  }
+  else {
+    loopingColor();
+  }
+
+  for (i = 0; i < track.length; i++) {
     playLayer(track[i]);
   }
 }
@@ -78,7 +86,7 @@ function recordBeat(key_code, last_press_timestamp, this_press_timestamp, color,
 function record() {
   recording = !recording;
   if (recording) {
-    $('#record').css('color', 'red');
+    $('#record').css('color', 'orange');
     last_press_timestamp = new Date().getTime();
     console.log('im recording');
   } else {
@@ -99,16 +107,24 @@ function playAndRecord(track) {
 
 function undo() {
   track.pop();
-  interval = oldInterval;
+  $('#undo').css('color', 'blue');
+  setTimeout(function() { $('#undo').css('color', 'white'); }, 400)
   console.log('Removed the last layer')
 }
 
 function stopSwitch() {
+  $('#stop-track').css('color', 'red');
+  setTimeout(function() { $('#stop-track').css('color', 'white'); }, 400)
   looping = false;
+  $('#loop-track').css('color', 'white');
+  $('#play-track').css('color', 'white');
+  if (recording) {
+    $('#record').click();
+  }
   clearInterval(trackLoop);
   for(var i = 0; i < currentSetTimeouts.length; i++ ) {
     clearTimeout(currentSetTimeouts[i]);
-  };
+  }
   currentSetTimeouts = [];
 }
 
@@ -125,7 +141,17 @@ function formatTrack(track) {
 function switchSounds() {
   differentSounds = !differentSounds;
   console.log('Switched the sounds');
-  if (differentSounds) { sound = 1; }
+  if (differentSounds) {
+    sound = 1;
+    $('#switch_sounds').text('Synth');
+     $('#switch_sounds').css('color', 'pink');
+    setTimeout(function() { $('#switch_sounds').css('color', 'white'); }, 400)
+  }
+  else {
+    $('#switch_sounds').text('Drums');
+     $('#switch_sounds').css('color', 'pink');
+    setTimeout(function() { $('#switch_sounds').css('color', 'white'); }, 400)
+  }
 }
 
 function soundSwitch() {
