@@ -1,6 +1,4 @@
-<h1><%= current_user.email %></h1>
-
-<h3>My Sounds</h3>
+<h1 class="text-center" id="my-sounds">My Sounds (<%= current_user.email %>)</h1>
 
 <div id="recordings-wrapper">
     <% @tracks.each do |track| %>
