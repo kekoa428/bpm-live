@@ -23,7 +23,6 @@
       <% else %>
         <%= link_to "Sign up", new_user_registration_path, :id => 'signup', :class => 'nav-right'  %> |
         <%= link_to "Login", new_user_session_path, :id => 'login', :class => 'nav-right'  %>
-        <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-right' %>
       <% end %>
     </nav>
 
@@ -34,7 +33,11 @@
       <%= link_to 'Loop', root_path, id: 'loop-track', :class => 'nav-center' %>
       <%= link_to 'Undo', root_path, id: 'undo', :class => 'nav-center' %>
       <%= link_to 'Switch', root_path, id: 'switch_sounds', :class => 'nav-center' %>
-      <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-center' %>
+      <% if user_signed_in? %>
+        <%= link_to 'Save', new_track_path, id: 'save', :class => 'nav-center' %>
+      <% else %>
+        <%= link_to 'Save', new_track_path, id: 'save-guest-button', :class => 'nav-center' %>
+      <% end %>
     </nav>
 
     <div id="my_popup">

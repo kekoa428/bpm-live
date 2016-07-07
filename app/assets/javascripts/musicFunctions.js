@@ -128,23 +128,11 @@ function switchSounds() {
   if (differentSounds) { sound = 1; }
 }
 
-<<<<<<< HEAD
-=======
 function soundSwitch() {
   if (differentSounds) {
     return 1;
    } else {
      return 0;
    }
-};
+}
 
-//   if (differentSounds === false) {
-//     soundFiles = sounds.wav_files;
-//     console.log(soundFiles);
-//   }
-//   else {
-//     soundFiles = sounds.mp3_files;
-//     console.log(soundFiles);
-//   }
-// }
->>>>>>> c87f1b3a42c009d0fc31fbb2436ad57b075627da
