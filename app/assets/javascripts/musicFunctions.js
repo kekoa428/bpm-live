@@ -33,6 +33,7 @@ function playSound(sound_file) {
     audio.play();
   }
   // // FIXME: Should be a better way to pause this
+  // // works more like MUTE than STOP
   // else if (stop === true) {
   //   audio.pause();
   //   // audio.currentTime = 0;
@@ -98,6 +99,8 @@ function playAndRecord(track) {
 
 function undo() {
   track.pop();
+  interval = oldInterval;
+  console.log('Removed the last layer')
 }
 
 function stopSwitch() {
@@ -121,6 +124,7 @@ function formatTrack(track) {
 
 function switchSounds() {
   differentSounds = !differentSounds;
+  console.log('Switched the sounds');
   if (differentSounds) { sound = 1; }
 }
 
@@ -131,13 +135,3 @@ function soundSwitch() {
      return 0;
    }
 };
-
-//   if (differentSounds === false) {
-//     soundFiles = sounds.second_kit;
-//     console.log(soundFiles);
-//   }
-//   else {
-//     soundFiles = sounds.first_kit;
-//     console.log(soundFiles);
-//   }
-// }

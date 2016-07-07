@@ -2,6 +2,7 @@ function showColor(id, color) {
   var square = $('#key-'+ id.toString());
   var square_limit = square;
 
+
   var x_coord = square.width()/2;
   var y_coord = square.height()/2;
 
@@ -96,6 +97,8 @@ function createTimeoutThree(f, dynamicParameter, interval) {
   // setTimeout(function() { f(dynamicParameter); }, interval);
 
   timer = setTimeout(function() { f(dynamicParameter); }, interval);
+  console.log("in the 3 param createTimeout, timer:");
+  console.log(timer);
   return timer;
 }
 
