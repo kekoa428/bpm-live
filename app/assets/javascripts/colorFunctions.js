@@ -2,6 +2,7 @@ function showColor(id, color) {
   var square = $('#key-'+ id.toString());
   var square_limit = square;
 
+
   var x_coord = square.width()/2;
   var y_coord = square.height()/2;
 
