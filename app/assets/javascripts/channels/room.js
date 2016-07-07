@@ -9,8 +9,8 @@ $(document).ready(function() {
     connected: function() {},
     disconnected: function() {},
     received: function(data) {
-      console.log(data);
-      console.log("latency: " + (Date.now() - data.beat.date));
+      // console.log(data);
+      // console.log("latency: " + (Date.now() - data.beat.date));
       data.beat.keyCode;
       // return playKeypress(data.beat.keyCode, randomColor());
     },

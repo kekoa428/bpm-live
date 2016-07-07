@@ -98,13 +98,13 @@ function fadeInBorder(id) {
 
 
 // Time out for each box?
-function createTimeout(f, dynamicParameter, interval) {
+function createTimeoutThree(f, dynamicParameter, interval) {
   var timer;
   timer = setTimeout(function() { f(dynamicParameter); }, interval);
   return timer;
 }
 
-function createTimeout(f, firstParam, secondParam, thirdParam, interval) {
+function createTimeoutFour(f, firstParam, secondParam, thirdParam, interval) {
   var timer;
   timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
   return timer;

@@ -31,6 +31,7 @@ function playSound(sound_file) {
     audio.play();
   }
   // // FIXME: Should be a better way to pause this
+  // // works more like MUTE than STOP
   // else if (stop === true) {
   //   audio.pause();
   //   // audio.currentTime = 0;
@@ -44,7 +45,7 @@ function playKeypress(key_code, color, sound) {
   var sound_file = soundFiles[sound][key_code - 49];
   playSound(sound_file);
   showColor(key_code - 48, color);
-  currentSetTimeouts.push(createTimeout(boxChangeBack, key_code - 48, 1000000));
+  currentSetTimeouts.push(createTimeoutThree(boxChangeBack, key_code - 48, 1000));
 }
 
 function playLayer(layer) {
@@ -52,7 +53,7 @@ function playLayer(layer) {
   for (var i = 0; i < layer.length; i++) {
     var beat = layer[i];
     rest += beat.rest;
-    currentSetTimeouts.push(createTimeout(playKeypress, beat.keypress, beat.color, beat.sound, rest));
+    currentSetTimeouts.push(createTimeoutFour(playKeypress, beat.keypress, beat.color, beat.sound, rest));
   }
 }
 
@@ -97,6 +98,8 @@ function playAndRecord(track) {
 
 function undo() {
   track.pop();
+  interval = oldInterval;
+  console.log('Removed the last layer')
 }
 
 function stopSwitch() {
@@ -120,15 +123,7 @@ function formatTrack(track) {
 
 function switchSounds() {
   differentSounds = !differentSounds;
+  console.log('Switched the sounds');
   if (differentSounds) { sound = 1; }
 }
 
-//   if (differentSounds === false) {
-//     soundFiles = sounds.wav_files;
-//     console.log(soundFiles);
-//   }
-//   else {
-//     soundFiles = sounds.mp3_files;
-//     console.log(soundFiles);
-//   }
-// }
