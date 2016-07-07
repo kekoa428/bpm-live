@@ -71,6 +71,10 @@ nav {
 
   float: left;
   border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 230px;
+  font-size: 500%;
 }
 
 a {

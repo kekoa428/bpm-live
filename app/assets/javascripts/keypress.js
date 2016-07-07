@@ -34,7 +34,7 @@ function bindKeyDown() {
     if (event.keyCode == 82) {        // r
       record();
     } else if (event.keyCode === 80) { // p
-      playTracks(tracks);
+      playTrack(track);
     } else if (event.keyCode === 88) { // x
       console.log("in the stop keys handler");
       stopSwitch();
@@ -46,6 +46,8 @@ function bindKeyDown() {
       $('#loop-track').click();
     }
   });
+
+
 };
 
 // will unbind keys on specific event handler

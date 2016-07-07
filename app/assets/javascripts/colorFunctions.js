@@ -3,9 +3,9 @@ function showColor(id, color) {
   var square_limit = square;
 
   // var x_coord = square_offset.left;
-  var x_coord = square.width()/3;
+  var x_coord = square.width()/2;
   // var y_coord = square_offset.top;
-  var y_coord = square.height()/3;
+  var y_coord = square.height()/2;
 
   // this will create the ripple wrap
   // Draw the ripple effect wrap
@@ -14,8 +14,8 @@ function showColor(id, color) {
     'width' 		: square.width(),
     'height'		: square.height(),
     'position' 		: 'relative',
-    'top'			: y_coord/2,
-    'left'	 		: x_coord/2,
+    'top'			: y_coord/4,
+    'left'	 		: x_coord/4,
     'z-index' 		: 0,
     'overflow' 		: 'hidden',
     'background-clip': 'padding-box'
@@ -32,8 +32,8 @@ function showColor(id, color) {
   	'height'			: circular_width,
   	'background'			: color, //'rgba(0,0,0,0.3)',
   	'position'			: 'absolute',
-  	'top'				: y_coord - ( circular_width / 2 ),
-  	'left'				: x_coord - ( circular_width / 2 ),
+  	'top'				: y_coord - ( circular_width /2 ),
+  	'left'				: x_coord - ( circular_width /2 ),
   	'content'			: '',
   	'background-clip' 		: 'padding-box',
   	'-webkit-border-radius'     	: '50%',
@@ -92,20 +92,19 @@ function fadeInBorder(id) {
   //$(css_selector).fadeIn('slow');
   $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ opacity: 1.0 }, 6000);
 }
-
-function createTimeout(f, firstParam, secondParam, thirdParam, interval) {
-  var timer;
-  timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
-  return timer;
-}
-
 // Time out for each box?
-function createTimeout(f, dynamicParameter, interval) {
+function createTimeoutThree(f, dynamicParameter, interval) {
   var timer;
   // setTimeout(function() { f(dynamicParameter); }, interval);
 
   timer = setTimeout(function() { f(dynamicParameter); }, interval);
   console.log("in the 3 param createTimeout, timer:");
   console.log(timer);
+  return timer;
+}
+
+function createTimeoutFive(f, firstParam, secondParam, thirdParam, interval) {
+  var timer;
+  timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
   return timer;
 }
