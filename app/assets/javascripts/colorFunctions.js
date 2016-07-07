@@ -96,8 +96,6 @@ function createTimeoutThree(f, dynamicParameter, interval) {
   // setTimeout(function() { f(dynamicParameter); }, interval);
 
   timer = setTimeout(function() { f(dynamicParameter); }, interval);
-  console.log("in the 3 param createTimeout, timer:");
-  console.log(timer);
   return timer;
 }
 
