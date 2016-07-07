@@ -217,16 +217,20 @@ nav p {
   border-radius: .5em;
 }
 
-body h1, h2, h3, h4, p, th, td, li, label {
-  color: white;
-}
-
 #my_popup ul {
   margin-left: -20px;
 }
 
 #my_popup ul li{
   margin: 5px 0;
+}
+
+body p, h1, h2, h3, h4, th, td, li, label {
+  color: white;
+}
+
+#user-tracks ul li {
+  color: white;
 }
 
 #my_popup h2, p, li {
@@ -236,3 +240,46 @@ body h1, h2, h3, h4, p, th, td, li, label {
 .outer-div {
   margin-top: -25px;
 }
+
+.single-recording {
+  width: 125px;
+  height: 125px;
+  background-color: #DEDEDE;
+  border-radius: 5em;
+  float: left;
+  margin: 15px;
+  padding: 15px;
+
+}
+
+.single-recording h2 {
+  color: black;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  top: 20%;
+  text-align: center;
+}
+
+.single-recording img {
+  z-index: 10;
+  opacity: 0.1;
+  position: relative;
+  bottom: 5.5em;
+  right: .8em;
+}
+
+#recordings-wrapper {
+  margin: 40px auto;
+  width: 80%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#my-sounds {
+  margin-top: 2em;
+}
+
