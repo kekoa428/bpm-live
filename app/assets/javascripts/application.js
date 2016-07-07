@@ -160,7 +160,9 @@ $(document).ready(function() {
       }, interval)
     }
   });
+
 });
+
 
 function loopingColor() {
   if (looping) {
