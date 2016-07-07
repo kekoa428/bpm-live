@@ -9,7 +9,6 @@ $(document).ready(function() {
     connected: function() {},
     disconnected: function() {},
     received: function(data) {
-      console.log(data);
       console.log("latency: " + (Date.now() - data.beat.date));
       data.beat.keyCode;
       return playKeypress(data.beat.keyCode, randomColor(), data.beat.soundswitch);
