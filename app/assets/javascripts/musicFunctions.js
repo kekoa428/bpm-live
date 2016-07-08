@@ -6,11 +6,11 @@ var currentSetTimeouts = [];
 
 var sounds = {
   // .wav files
-  second_kit: ["Daft Punk - C4.mp3", "Daft Punk - C5.mp3", "Daft Punk - C6.mp3", "RIF1(LD0.WAV", "RIF2(LD0.mp3",
+  second_kit: ["ClickClackPOWPOW!.mp3", "OneHunnid.mp3", "J.E.T.Lag (1).mp3", "RIF1(LD0.WAV", "RIF2(LD0.mp3",
   "RIF3(LD0.mp3", "OPEN-HIZ.mp3", "CUT-KIK(.mp3", "KICKASS(.mp3"],
 
   // .mp3 files
-  first_kit: [ "kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "OPEN-HIZ.mp3",
+  first_kit: [ "kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
   "OPEN-RAS.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"]
 
 }
@@ -198,4 +198,3 @@ function findLongestLayer(array) {
   array.sort(function(a, b) { b - a; } )
   return array[0];
 }
-
