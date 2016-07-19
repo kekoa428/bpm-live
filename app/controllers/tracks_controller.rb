@@ -37,7 +37,13 @@ class TracksController < ApplicationController
   end
 
   def destroy
-
+    @track = Track.find(params[:id])
+    @track.destroy
+    respond_to do |format|
+      format.html { redirect_to "/users/#{current_user.id}" }
+      # format.json { head :no_content }
+      format.js { }
+    end
   end
 
 private
@@ -46,3 +52,17 @@ private
   end
 
 end
+# if @track
+#         @track.destroy
+#         puts "TRACK DESTROY"
+#         if format.json
+#           puts "do nothing"
+#         else
+#           puts "REDIRECTING"
+#           puts "#{request.xhr?}"
+#           redirect_to "/users/#{current_user.id}"
+#         end
+#       else
+#         puts "RENDERING"
+#         render 'users#show'
+#       end

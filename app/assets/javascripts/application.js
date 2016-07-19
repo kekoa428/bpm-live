@@ -109,18 +109,34 @@ $(document).ready(function() {
   saveTrack();
 
   // play track from user profile
-  $(".play-track-from-user-profile").click(function(e) {
-    e.preventDefault();
-    var play_button_clicked = $(this);
-    var id_of_track_to_play = play_button_clicked.attr('id');
+  $(".play-track-from-user-profile").click(function(event) {
+    event.preventDefault();
+    var trackId = $(this).closest('div').attr('id');
 
     $.ajax({
-      url: "/tracks/" + id_of_track_to_play
+      url: "/tracks/" + trackId
     })
       .done(function(response){
         playableTrack = formatTrack(response);
         playTrack(playableTrack);
       })
+  })
+
+  // delete track from user profile
+  $(document).on('click', 'a.delete-track', function(event) {
+    event.preventDefault();
+    var trackId = $(this).parent('div').attr('id');
+    alert(trackId);
+
+    // $.ajax({
+    //   url: "/tracks/" + trackId,
+    //   type: 'DELETE'
+    // })
+    //   .done(function() {
+    //     alert('hi');
+    //     $('#' + trackId).remove();
+    //   })
+
   })
 
 
