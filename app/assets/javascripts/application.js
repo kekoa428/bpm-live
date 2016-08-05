@@ -1,14 +1,14 @@
-
 //= require colors
 //= require jquery2
 //= require jquery_ujs
+//= require jquery-ui/effect-shake
 //= require_tree .
+//= require 'globals'
 //= require 'save'
 //= require 'instruction'
 //= require 'colorFunctions'
 //= require 'musicFunctions'
-//= require 'keypress.js'
-//= require jquery-ui/effect-shake
+//= require 'keypress'
 //= require 'js.cookie'
 
 var div = ["7","8","9","6","3","2","1","4","5"];
@@ -117,25 +117,27 @@ $(document).ready(function() {
       url: "/tracks/" + trackId
     })
       .done(function(response){
+        console.log(response);
         playableTrack = formatTrack(response);
         playTrack(playableTrack);
       })
   })
 
   // delete track from user profile
-  $(document).on('click', 'a.delete-track', function(event) {
+  $(".delete-track").click(function(event) {
     event.preventDefault();
     var trackId = $(this).parent('div').attr('id');
-    alert(trackId);
+    console.log('a');
 
-    // $.ajax({
-    //   url: "/tracks/" + trackId,
-    //   type: 'DELETE'
-    // })
-    //   .done(function() {
-    //     alert('hi');
-    //     $('#' + trackId).remove();
-    //   })
+    $.ajax({
+      url: "/tracks/" + trackId,
+      type: 'DELETE'
+    })
+      .done(function() {
+        console.log('b');
+        $('#' + trackId).remove();
+        // alert('removed');
+      });
 
   })
 

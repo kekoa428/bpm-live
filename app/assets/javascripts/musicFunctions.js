@@ -1,29 +1,3 @@
-var track = [];
-var layer = [];
-var trackLoop = [];
-
-var currentSetTimeouts = [];
-
-var sounds = {
-  // .wav files
-  second_kit: ["ClickClackPOWPOW!.mp3", "OneHunnid.mp3", "J.E.T.Lag (1).mp3", "RIF1(LD0.WAV", "RIF2(LD0.mp3",
-  "RIF3(LD0.mp3", "OPEN-HIZ.mp3", "CUT-KIK(.mp3", "KICKASS(.mp3"],
-
-  // .mp3 files
-  first_kit: [ "kick1.mp3", "kick2.mp3", "perc1.mp3", "snare4.mp3", "trophies.mp3",
-  "OPEN-RAS.mp3", "vox2.mp3", "vox3.mp3", "vox4.mp3"]
-
-}
-var recording = false;
-var looping = false;
-var stop = false;
-var differentSounds = false;
-var soundFiles = [ sounds.first_kit, sounds.second_kit ]
-
-var this_press_timestamp = null;
-var last_press_timestamp = null;
-
-var interval = 0;
 
 function playSound(sound_file) {
   var audio = document.createElement("audio");
@@ -55,6 +29,7 @@ function playLayer(layer) {
     var beat = layer[i];
     rest += beat.rest;
     currentSetTimeouts.push(createTimeoutFive(playKeypress, beat.keypress, beat.color, beat.sound, rest));
+    console.log(currentSetTimeouts);
   }
 }
 
@@ -100,10 +75,6 @@ function record() {
   }
 }
 
-function newInterval() {
-  var arrayOfRests = findLayerRests(track);
-  interval = findLongestLayer(arrayOfRests);
-}
 
 function playAndRecord(track) {
   playTrack(track);
@@ -166,6 +137,7 @@ function soundSwitch() {
      return 0;
    }
 };
+
 function loopingColor() {
   if (looping) {
     $('#loop-track').css('color', 'yellow');
@@ -175,6 +147,11 @@ function loopingColor() {
     $('#loop-track').css('color', 'white');
     $('#play-track').css('color', 'white');
   }
+}
+
+function newInterval() {
+  var arrayOfRests = findLayerRests(track);
+  interval = findLongestLayer(arrayOfRests);
 }
 
 function layerRestLength(layer) {
