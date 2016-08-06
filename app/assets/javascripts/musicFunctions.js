@@ -75,12 +75,6 @@ function record() {
   }
 }
 
-
-function playAndRecord(track) {
-  playTrack(track);
-  record();
-}
-
 function undo() {
   track.pop();
   $('#undo').css('color', 'cyan');
