@@ -2,7 +2,6 @@ var colorSweepTimeout;
 
 function resetIdleTimer() {
   clearInterval(colorSweepTimeout);
-  //colorSweep(colorSwatch[i]);
   colorSweepTimeout = setInterval(colorSweep, 10000, randomColorSwatch());
 }
 
@@ -17,10 +16,8 @@ function bindKeyUp() {
   })
 };
 
-
 function bindKeyDown() {
   // this binding will allow for color change and sound play
-
   $(document).keydown(function(event) {
     var key_code = event.keyCode;
     var color = randomColor();
@@ -51,15 +48,11 @@ function bindKeyDown() {
 
 // will unbind keys on specific event handler
 function unbindKeys(){
-    console.log("hello i am in unbindKeys()");
-
   $(document).unbind('keyup');
   $(document).unbind('keydown');
 }
 
 function rebindKeys(){
-  console.log("hello i am in rebindKeys()");
-
   $(document).bind('keyup', bindKeyUp);
   $(document).bind('keydown', bindKeyDown);
   bindKeyUp();

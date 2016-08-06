@@ -6,13 +6,6 @@ function playSound(sound_file) {
   if (stop === false) {
     audio.play();
   }
-  // // FIXME: Should be a better way to pause this
-  // // works more like MUTE than STOP
-  // else if (stop === true) {
-  //   audio.pause();
-  //   // audio.currentTime = 0;
-  //   throw "";
-  // }
 }
 
 function playKeypress(key_code, color, sound) {

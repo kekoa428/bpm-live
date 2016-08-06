@@ -36,18 +36,12 @@ function colorSweep(colorSwatch) {
   }
 }
 
-
-
 $(document).ready(function() {
-
   // Fade in divs on load of page
   $("#key-7, #key-8, #key-9, #key-6, #key-3, #key-2, #key-1, #key-4, #key-5").each(function(i) {
     var css_selector = "#key-" + div[i];
     $(css_selector).css('visibility', 'hidden');
-    // $(css_selector).delay(i*600).fadeIn(200);
-    // showColor(div[i], loadColors[i]);
     colorFade(i*200, div[i], colorSwatch[i]);
-    //setTimeout(fadeInBorder, i*200+1000, div[i]);
     setTimeout(fadeToBlack, i*200 + 300, div[i]);
   });
 
@@ -59,10 +53,8 @@ $(document).ready(function() {
 
   // for overlay of keypress instructions
   displayIntructions();
-
   bindClickEvents();
 
-  // $('.home-link').on('click', function(e){
   $(document).on('click', '.home-link', function(e){
     console.log('EVENT HANDLER - rebinding keys');
     console.log(this);

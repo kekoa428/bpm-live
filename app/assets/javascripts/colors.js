@@ -1,10 +1,4 @@
-// var colorSwatches = {
-//   red: ['#FFcdd2', '#ef9a9a', '#e57373', '#ef5350', '#f44336', '#e53935', '#d32f2f', '#c62828', '#b71c1c'],
-//   custom: ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#28b463","#239b56","#1d8348"]
-// }
-
 var colorSwatches = {
-
   'Red': {
     '50': '#FFEBEE',
     '100': '#FFCDD2',
