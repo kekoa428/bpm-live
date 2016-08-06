@@ -11,10 +11,6 @@
 //= require 'keypress'
 //= require 'js.cookie'
 
-var div = ["7","8","9","6","3","2","1","4","5"];
-var order = ["#key-7", "#key-8", "#key-9", "#key-6", "#key-3", "#key-2", "#key-1", "#key-4", "#key-5"];
-var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#28b463","#239b56","#1d8348"];
-
 var getValues = function(obj) {
   var values = [];
   for (var key in obj) { values.push(obj[key]) }
@@ -31,6 +27,8 @@ function colorFade(delay, id, color) {
   setTimeout(fadeToColor, delay, id, color);
 }
 
+var colorSwatch = randomColorSwatch();
+
 function colorSweep(colorSwatch) {
   for (var i = 0; i < div.length; i++) {
     colorFade(i*200, div[i], colorSwatch[i]);
@@ -38,7 +36,7 @@ function colorSweep(colorSwatch) {
   }
 }
 
-var colorSwatch = randomColorSwatch();
+
 
 $(document).ready(function() {
 

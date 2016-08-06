@@ -42,14 +42,6 @@ class TracksController < ApplicationController
     puts "#{@track.inspect}$$$$$$$$$$$$$$$$$$$$$$$$"
     @track.delete
     puts "#{@track.inspect}=================================="
-    # render nothing: true, status: 200
-    # if !request.xhr?
-    #   respond_to do |format|
-    #     format.html { redirect_to track_path }
-    #     format.json { render json: @track }
-    #     format.js   { render :layout => false }
-    #   end
-    # end
   end
 
 private

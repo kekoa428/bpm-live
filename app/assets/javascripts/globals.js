@@ -1,3 +1,8 @@
+// Used for page load and color switching
+var div = ["7","8","9","6","3","2","1","4","5"];
+var order = ["#key-7", "#key-8", "#key-9", "#key-6", "#key-3", "#key-2", "#key-1", "#key-4", "#key-5"];
+var loadColors = ["#eafaf1","#d5f5e3","#abebc6","#82e0aa","#58d68d","#2ecc71","#28b463","#239b56","#1d8348"];
+
 // Track Builder Globals
 var track = [];
 var layer = [];

@@ -2,7 +2,6 @@ function showColor(id, color) {
   var square = $('#key-'+ id.toString());
   var square_limit = square;
 
-
   var x_coord = square.width()/2;
   var y_coord = square.height()/2;
 
@@ -59,11 +58,7 @@ function showColor(id, color) {
 // Random color generator
 function randomColor() {
   var colors = randomColorSwatch();
-
   return colors[Math.floor(Math.random()*colors.length)];
-
-  // return ('#' + Math.floor(Math.random()*16777215).toString(16));
-  // return colors[Math.floor(Math.random() * colors.length)];
 }
 
 // Color change functions
@@ -82,28 +77,20 @@ function fadeToBlack(id) {
 
 function fadeToColor(id, color) {
   var css_selector = '#key-' + id;
-  //fadeInBorder(id);
   $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ backgroundColor: color, opacity: 1.0 }, 300);
 }
 
 function fadeInBorder(id) {
   var css_selector = '#key-' + id;
-  //$(css_selector).fadeIn('slow');
   $(css_selector).css({ visibility: 'visible', opacity: 0.0 }).animate({ opacity: 1.0 }, 6000);
 }
-// Time out for each box?
-function createTimeoutThree(f, dynamicParameter, interval) {
-  var timer;
-  // setTimeout(function() { f(dynamicParameter); }, interval);
 
-  timer = setTimeout(function() { f(dynamicParameter); }, interval);
-  console.log("in the 3 param createTimeout, timer:");
-  console.log(timer);
+function createTimeoutThree(f, dynamicParameter, interval) {
+  var timer = setTimeout(function() { f(dynamicParameter); }, interval);
   return timer;
 }
 
 function createTimeoutFive(f, firstParam, secondParam, thirdParam, interval) {
-  var timer;
-  timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
+  var timer = setTimeout(function() { f(firstParam, secondParam, thirdParam); }, interval);
   return timer;
 }
