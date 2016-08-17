@@ -56,11 +56,11 @@ function record() {
   if (recording) {
     $('#record').css('color', 'orange');
     last_press_timestamp = new Date().getTime();
-    console.log('im recording');
+    console.log('Started Recording');
   } else {
     $('#record').css('color', 'white');
     last_press_timestamp = null;
-    console.log('i stopped recording')
+    console.log('Recording Stopped')
     if (layer.length > 0) {
       track.push(layer);
       layer = [];

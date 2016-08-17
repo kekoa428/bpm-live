@@ -56,14 +56,10 @@ $(document).ready(function() {
   bindClickEvents();
 
   $(document).on('click', '.home-link', function(e){
-    console.log('EVENT HANDLER - rebinding keys');
-    console.log(this);
     rebindKeys();
   });
 
   $(document).on('focus', 'input', function(e){
-    console.log('EVENT HANDLER - unbind keys');
-    console.log(this);
     unbindKeys();
   });
 
@@ -102,12 +98,10 @@ $(document).ready(function() {
   $(".play-track-from-user-profile").click(function(event) {
     event.preventDefault();
     var trackId = $(this).closest('div').attr('id');
-
     $.ajax({
       url: "/tracks/" + trackId
     })
       .done(function(response){
-        console.log(response);
         playableTrack = formatTrack(response);
         playTrack(playableTrack);
       })
@@ -117,39 +111,27 @@ $(document).ready(function() {
   $(".delete-track").click(function(event) {
     event.preventDefault();
     var trackId = $(this).parent('div').attr('id');
-    console.log('a');
-
     $.ajax({
       url: "/tracks/" + trackId,
-      type: 'DELETE'
     })
       .done(function() {
-        console.log('b');
         $('#' + trackId).remove();
-        // alert('removed');
       });
-
   })
 
 
   // Loops tracks
   $('#loop-track').click(function(event) {
     event.preventDefault();
-    // oldInterval = interval;
-    console.log(interval);
-    // console.log(oldInterval, "oldInterval");
     if (looping) {
-      console.log(interval, "stopping loop");
       looping = false;
       loopingColor();
       clearInterval(trackLoop);
       console.log("Looping Stopped")
     }
     else {
-      // interval = oldInterval;
       looping = true;
       loopingColor();
-      console.log(interval, "starting loop");
       console.log("Looping Started")
       playTrack(track);
       trackLoop = setInterval(function() {

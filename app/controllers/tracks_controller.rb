@@ -37,11 +37,12 @@ class TracksController < ApplicationController
   end
 
   def destroy
-    puts "#{params.inspect}*************************"
     @track = Track.find(params[:id])
-    puts "#{@track.inspect}$$$$$$$$$$$$$$$$$$$$$$$$"
     @track.delete
-    puts "#{@track.inspect}=================================="
+    # respond_to do |format|
+    #   format.html { redirect_to user_path, notice: 'page was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
 private
