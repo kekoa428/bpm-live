@@ -5,29 +5,29 @@ Beats Per Mash Live (aka bpm-live) is a virtual midi controller built to jam out
 ## Getting Started
 
 To run bpm-live locally you can clone the repo in a folder destination of your choice.
-  '''
-  git clone https://github.com/kekoa428/bpm-live.git
-  '''
+'''
+git clone https://github.com/kekoa428/bpm-live.git
+'''
 Navigate to the folder:
-  '''
-  cd bpm-live
-  '''
+'''
+cd bpm-live
+'''
 Make sure to bundle to download the necessary gems.
-  '''
-  bundle
-  '''
+'''
+bundle
+'''
 Create the database and migrate and seed:
-  '''
-  rake db:create db:migrate db:seed
-  '''
+'''
+rake db:create db:migrate db:seed
+'''
 Start the server:
-  '''
-  rails server
-  '''
+'''
+rails server
+'''
 Open in webpage:
-  '''
-  http://localhost:3000/
-  '''
+'''
+http://localhost:3000/
+'''
 Play!
 
 ## Authors
