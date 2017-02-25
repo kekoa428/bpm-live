@@ -45,9 +45,13 @@ Play! :)
 ## Authors
 
   Thomas Farr
+
   Richie Yi
+
   Jaq Phan
+
   Michael Dumalag
+
   Brad Harris
 
 ## License
